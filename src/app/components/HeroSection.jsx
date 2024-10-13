@@ -15,11 +15,11 @@ const HeroSection = () => {
                     transition={{ duration: 0.5 }}
                     className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
                 >
-                    <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
+                    <h1 className="text-text mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold">
+                        <span className="text-primary bg-clip-text">
                             Hello, I&apos;m{" "}
                         </span>
-                        <br></br>
+                        <br/>
                         <TypeAnimation
                             sequence={[
                                 "Andrea...",
@@ -28,37 +28,35 @@ const HeroSection = () => {
                                 1000,
                                 "Ivo...",
                                 1000,
-                                "Yeah Ivo is fine",
+                                "Confused",
                                 3000,
                             ]}
                             wrapper="span"
                             speed={50}
                             repeat={Infinity}
-
                         />
                     </h1>
-                    <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-                        Eru decide di radunare tutti gli Ainur e di proporre un unico grande Tema su cui costruire una
-                        grande sinfonia: la Grande Musica.
-                        Ed essi cominciano a cantare, e la melodia si spande tutt’intorno, un trionfo di suoni che si
-                        intrecciano in perfetta armonia.
-                        O meglio, quasi perfetta. Perché in tutto questo c’è ancora un dissidente, uno che “canta fuori
-                        dal coro”...
+                    <p className="text-text text-base sm:text-lg mb-6 lg:text-xl">
+                        I am a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
+                        With a passion for coding and a keen interest in data analysis, I am eager to apply my skills in dynamic
+                        projects and contribute to the evolving tech landscape.
                     </p>
                     <div>
                         <Link
-                            href="/#contact"
-                            className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-200 text-white"
+                            href="/cv.pdf"
+                            className="px-1 inline-block mr-5 py-1 w-full sm:w-fit rounded-full bg-primary text-secondary mt-3"
                         >
-                            Hire Me
+                              <span className="block hover:bg-slate-800 rounded-full px-5 py-2">
+                                Download CV
+                              </span>
                         </Link>
                         <Link
-                            href="/"
-                            className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3"
+                            href="/#contact"
+                            className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-primary text-secondary mt-3"
                         >
-              <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
-                Download CV
-              </span>
+                            <span className="block hover:bg-slate-800 rounded-full px-5 py-2">
+                                Hire Me
+                            </span>
                         </Link>
                     </div>
                 </motion.div>
@@ -68,7 +66,7 @@ const HeroSection = () => {
                     transition={{ duration: 0.5 }}
                     className="col-span-4 place-self-center mt-4 lg:mt-0"
                 >
-                    <div className="rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative">
+                    <div className="rounded-full bg-foreground w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative">
                         <Image
                             src="/images/hero-image.png"
                             alt="hero image"

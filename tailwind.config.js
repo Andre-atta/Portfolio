@@ -9,14 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        ...colors,
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        text: "var(--text)",
       },
-    },
-    colors: {
-      ...colors,
-      primary: colors.orange,
-      secondary: colors.purple,
     },
   },
   plugins: [],
