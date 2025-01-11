@@ -5,18 +5,12 @@
 :root {
   --background: #100F11;
   --foreground: #302E35;
-  --primary: #614F89;
-  --secondary: #FEA4B9;
-  --text: #eee5e9;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #100F11;
     --foreground: #302E35;
-    --primary: #614F89;
-    --secondary: #FEA4B9;
-    --text: #eee5e9;
   }
 }
 
@@ -24,6 +18,31 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Stili per le stagioni */
+body.winter {
+  --primary: #1E3A8A;
+  --secondary: #3B82F6;
+  --text: #93C5FD;
+}
+
+body.spring {
+  --primary: #16A34A;
+  --secondary: #86EFAC;
+  --text: #4ADE80;
+}
+
+body.summer {
+  --primary: #F59E0B;
+  --secondary: #FDE68A;
+  --text: #FCD34D;
+}
+
+body.autumn {
+  --primary: #D97706;
+  --secondary: #FCA5A5;
+  --text: #F87171;
 }
 
 @layer utilities {

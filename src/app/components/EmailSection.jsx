@@ -47,10 +47,10 @@ const EmailSection = () => {
             className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative"
         >
             <div className="z-10">
-                <h5 className="text-xl font-bold text-white my-2">
+                <h5 className="text-xl font-bold --text my-2">
                     Let&apos;s Connect
                 </h5>
-                <p className="text-[#ADB7BE] mb-4 max-w-md">
+                <p className="--text mb-4 max-w-md">
                     {" "}
                     I&apos;m currently looking for new opportunities, my inbox is always
                     open. Whether you have a question or just want to say hi, I&apos;ll
@@ -75,7 +75,7 @@ const EmailSection = () => {
                         <div className="mb-6">
                             <label
                                 htmlFor="email"
-                                className="text-white block mb-2 text-sm font-medium"
+                                className="--text mb-2 text-sm font-medium"
                             >
                                 Your email
                             </label>
@@ -84,14 +84,14 @@ const EmailSection = () => {
                                 type="email"
                                 id="email"
                                 required
-                                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] --text text-sm rounded-lg block w-full p-2.5"
                                 placeholder="jacob@google.com"
                             />
                         </div>
                         <div className="mb-6">
                             <label
                                 htmlFor="subject"
-                                className="text-white block text-sm mb-2 font-medium"
+                                className="--text block text-sm mb-2 font-medium"
                             >
                                 Subject
                             </label>
