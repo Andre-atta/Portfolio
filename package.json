@@ -12,10 +12,13 @@
     "@heroicons/react": "^2.1.5",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.11.4",
-    "next": "14.2.15",
-    "react": "^18",
+    "next": "^14.2.24",
+    "react": "^18.3.1",
     "react-animated-numbers": "^0.18.0",
     "react-dom": "^18",
+    "react-modal-image": "^2.6.0",
+    "react-photo-gallery": "^8.0.0",
+    "react-type-animation": "^3.2.0",
     "resend": "^4.0.0"
   },
   "devDependencies": {

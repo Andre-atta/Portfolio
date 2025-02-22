@@ -2,8 +2,8 @@ import React from "react";
 
 const ProjectTag = ({ name, onClick, isSelected }) => {
     const buttonStyles = isSelected
-        ? "text-white border-primary-500"
-        : "text-[#ADB7BE] border-slate-600 hover:border-white";
+        ? "text-[var(--text)] border-[var(--primary)]"
+        : "text-[var(--text)] border-[var(--secondary)] hover:border-[var(--primary)]";
     return (
         <button
             className={`${buttonStyles} rounded-full border-2 px-6 py-3 text-xl cursor-pointer`}

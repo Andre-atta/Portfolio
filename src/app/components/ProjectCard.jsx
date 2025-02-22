@@ -1,6 +1,6 @@
 import React from "react";
-import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 
 const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
     return (
@@ -24,7 +24,7 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
                     </Link>
                 </div>
             </div>
-            <div className="text-white rounded-b-xl mt-3 bg-[#181818]py-6 px-4">
+            <div className="text-[var(--text)] rounded-b-xl mt- bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] py-4 px-4">
                 <h5 className="text-xl font-semibold mb-2">{title}</h5>
                 <p className="text-[#ADB7BE]">{description}</p>
             </div>

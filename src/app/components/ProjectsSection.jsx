@@ -81,10 +81,10 @@ const ProjectsSection = () => {
 
     return (
         <section id="projects">
-            <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+            <h2 className="text-center text-4xl font-bold text-[var(--secondary)] mt-6x mb-6 ">
                 My Projects
             </h2>
-            <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
+            <div className="text-[var(--text)] flex flex-row justify-center items-center gap-2 py-6">
                 <ProjectTag
                     onClick={handleTagChange}
                     name="All"
@@ -99,6 +99,11 @@ const ProjectsSection = () => {
                     onClick={handleTagChange}
                     name="Mobile"
                     isSelected={tag === "Mobile"}
+                />
+                <ProjectTag
+                    onClick={handleTagChange}
+                    name="Other"
+                    isSelected={tag === "Other"}
                 />
             </div>
             <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">

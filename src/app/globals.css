@@ -3,33 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --background: #100F11;
-  --foreground: #302E35;
+  --background: #121212;
+  --foreground: #dfdede;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #100F11;
-    --foreground: #302E35;
+    --background: #121212;
+    --foreground: #F5FBEF;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: rgb(var(--foreground));
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Stili per le stagioni */
 body.winter {
-  --primary: #1E3A8A;
-  --secondary: #3B82F6;
-  --text: #93C5FD;
+  --primary: #1a2d77;
+  --secondary: #4389fa;
+  --text: #FFFFFF;
+  /*--text: #ADB7BE;*/
 }
 
 body.spring {
-  --primary: #16A34A;
-  --secondary: #86EFAC;
+  --primary: #22c55e;
+  --secondary: #22c55d;
   --text: #4ADE80;
 }
 
@@ -40,13 +41,7 @@ body.summer {
 }
 
 body.autumn {
-  --primary: #D97706;
-  --secondary: #FCA5A5;
-  --text: #F87171;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  --primary: #7C4608;
+  --secondary: #F15C30;
+  --text: #F9AD77;
 }

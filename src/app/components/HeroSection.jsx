@@ -15,9 +15,9 @@ const HeroSection = () => {
                     transition={{ duration: 0.5 }}
                     className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
                 >
-                    <h1 className="text-text mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold">
-                        <span className="text-primary bg-clip-text">
-                            Hello, I&apos;m{" "}
+                    <h1 className="text-[var(--text)] mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]">
+                          Hello, I&apos;m{" "}
                         </span>
                         <br/>
                         <TypeAnimation
@@ -36,27 +36,28 @@ const HeroSection = () => {
                             repeat={Infinity}
                         />
                     </h1>
-                    <p className="text-text text-base sm:text-lg mb-6 lg:text-xl">
+                    <p className="text-[var(--text)] text-base sm:text-lg mb-6 lg:text-xl">
                         I am a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
-                        With a passion for coding and a keen interest in data analysis, I am eager to apply my skills in dynamic
-                        projects and contribute to the evolving tech landscape.
+                        Driven by curiosity and creativity, I enjoy tackling challenges and exploring new ideas.
+                        While coding may not be my greatest strength, I embrace problem-solving with enthusiasm.
+                        Beyond tech, I have a passion for photography and stay active through calisthenics.
                     </p>
                     <div>
                         <Link
                             href="/cv.pdf"
-                            className="px-1 inline-block mr-5 py-1 w-full sm:w-fit rounded-full bg-primary text-secondary mt-3"
+                            className="inline-block w-full sm:w-fit rounded-full mr-6 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] hover:bg-slate-200 text-[var(--text)]"
                         >
-                              <span className="block hover:bg-slate-800 rounded-full px-5 py-2">
+                              <span className="block hover:bg-[var(--primary)] rounded-full px-6 py-3">
                                 Download CV
                               </span>
                         </Link>
                         <Link
                             href="/#contact"
-                            className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-primary text-secondary mt-3"
+                            className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] hover:bg-slate-800 text-[var(--text)] mt-3"
                         >
-                            <span className="block hover:bg-slate-800 rounded-full px-5 py-2">
+                              <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-6 py-2">
                                 Hire Me
-                            </span>
+                              </span>
                         </Link>
                     </div>
                 </motion.div>
@@ -66,7 +67,7 @@ const HeroSection = () => {
                     transition={{ duration: 0.5 }}
                     className="col-span-4 place-self-center mt-4 lg:mt-0"
                 >
-                    <div className="rounded-full bg-foreground w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative">
+                    <div className="rounded-full lg:ml-32 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative">
                         <Image
                             src="/images/hero-image.png" 
                             alt="hero image"
