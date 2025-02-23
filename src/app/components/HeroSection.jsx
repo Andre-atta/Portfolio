@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import RoundedFull from "@/app/components/button/RoundedFull"; // Importa RoundedFull
+import RoundedEmpty from "@/app/components/button/RoundedEmpty"; // Importa RoundedEmpty
 
 const HeroSection = () => {
     return (
@@ -36,28 +38,18 @@ const HeroSection = () => {
                             repeat={Infinity}
                         />
                     </h1>
-                    <p className="text-[var(--text)] text-base sm:text-lg mb-6 lg:text-xl">
+                    <p className="text-[var(--text)] text-base sm:text-lg mb-6 lg:text-xl max-w-prose md:max-w-2xl lg:max-w-4xl text-justify mx-auto sm:mx-0">
                         I am a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
                         Driven by curiosity and creativity, I enjoy tackling challenges and exploring new ideas.
                         While coding may not be my greatest strength, I embrace problem-solving with enthusiasm.
                         Beyond tech, I have a passion for photography and stay active through calisthenics.
                     </p>
-                    <div>
-                        <Link
-                            href="/cv.pdf"
-                            className="inline-block w-full sm:w-fit rounded-full mr-6 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] hover:bg-slate-200 text-[var(--text)]"
-                        >
-                              <span className="block hover:bg-[var(--primary)] rounded-full px-6 py-3">
-                                Download CV
-                              </span>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <Link href="/cv.pdf">
+                            <RoundedFull text="Download CV" />
                         </Link>
-                        <Link
-                            href="/#contact"
-                            className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] hover:bg-slate-800 text-[var(--text)] mt-3"
-                        >
-                              <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-6 py-2">
-                                Hire Me
-                              </span>
+                        <Link href="/#contact">
+                            <RoundedEmpty text="Hire Me" />
                         </Link>
                     </div>
                 </motion.div>
@@ -65,11 +57,11 @@ const HeroSection = () => {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="col-span-4 place-self-center mt-4 lg:mt-0"
+                    className="col-span-4 place-self-center mt-8 sm:mt-4 lg:mt-0"
                 >
-                    <div className="rounded-full lg:ml-32 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative">
+                    <div className="rounded-full lg:ml-32 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] lg:w-[400px] lg:h-[400px] relative">
                         <Image
-                            src="/images/hero-image.png" 
+                            src="/images/hero-image.svg"
                             alt="hero image"
                             className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             width={300}
