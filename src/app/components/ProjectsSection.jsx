@@ -45,13 +45,13 @@ const ProjectsSection = () => {
         <section id="projects" className={`p-6 ${showAllProjects ? "fixed inset-0 bg-[var(--background)] z-50 overflow-y-auto" : ""}`}>
             {/* Applica la larghezza ridotta solo quando showAllProjects è true */}
             <div className={`container mx-auto ${showAllProjects ? "max-w-4xl" : ""}`}>
-                <div className="border-b-2 border-[var(--primary)] flex justify-between items-center mb-6">
+                <div className="border-b-2 border-[var(--primary)] flex justify-between items-center mt-4 mb-4">
                     <h2 className="text-left text-4xl font-bold text-[var(--secondary)]">
                         My Projects
                     </h2>
                     {!showAllProjects && (
                         <button
-                            className="block py-2 pl-3 pr-4 text-[var(--text)] sm:text-xl rounded md:p-0 hover:text-[var(--secondary)]"
+                            className="block text-[var(--text)] sm:text-xl rounded md:p-0 hover:text-[var(--secondary)]"
                             onClick={() => setShowAllProjects(true)}
                         >
                             MORE ABOUT
@@ -76,7 +76,7 @@ const ProjectsSection = () => {
                                 <ArrowLeftIcon className="h-6 w-6" />
                             </button>
                             <h2 className="text-2xl font-bold text-[var(--secondary)]">
-                                My Projects
+                                📖My Projects
                             </h2>
                         </div>
                         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">

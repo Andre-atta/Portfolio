@@ -39,10 +39,7 @@ const HeroSection = () => {
                         />
                     </h1>
                     <p className="text-[var(--text)] text-base sm:text-lg mb-6 lg:text-xl max-w-prose md:max-w-2xl lg:max-w-4xl text-justify mx-auto sm:mx-0">
-                        I am a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
-                        Driven by curiosity and creativity, I enjoy tackling challenges and exploring new ideas.
-                        While coding may not be my greatest strength, I embrace problem-solving with enthusiasm.
-                        Beyond tech, I have a passion for photography and stay active through calisthenics.
+                        Ricorda che i giorni di pioggia sono solo un&apos;occasione per un nuovo punto di vista
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Link href="/cv.pdf">

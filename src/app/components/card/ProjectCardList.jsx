@@ -54,7 +54,7 @@ const ProjectCardList = ({ imgUrl, title, description, gitUrl, previewUrl, techn
                 </div>
                 <p className="text-[var(--text)] mb-4">{description}</p>
                 <div className="mt-4">
-                    <h6 className="text-sm font-semibold mb-2">Technologies:</h6>
+                    <h6 className="text-sm text-[var(--text)] font-semibold mb-2">Technologies:</h6>
                     <div className="flex flex-wrap">
                         {technologies.map((tech, index) => (
                             <TechnologyTag key={index} technology={tech} />

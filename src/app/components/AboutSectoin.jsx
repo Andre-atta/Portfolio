@@ -54,10 +54,14 @@ const AboutSection = () => {
             <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
                 <Image src="/images/about-image.png" width={500} height={500}  alt="Me_myself_and_I"/>
                 <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-                    <h2 className="text-4xl font-bold text-[var(--secondary)] mb-4">About Me</h2>
-                    <p className="text-base lg:text-lg">
-                        Eru decide di radunare tutti gli Ainur e di proporre un unico grande Tema su cui costruire una
-                        grande sinfonia: la Grande Musica...
+                    <h2 className="border-b-2 border-[var(--primary)] text-4xl font-bold text-[var(--secondary)] pb-2 mb-3">
+                        🔮About Me
+                    </h2>
+                    <p className=" text-justify text-base lg:text-lg">
+                        I am a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
+                        Driven by curiosity and creativity, I enjoy tackling challenges and exploring new ideas.
+                        While coding may not be my greatest strength, I embrace problem-solving with enthusiasm.
+                        Beyond tech, I have a passion for photography and stay active through calisthenics.
                     </p>
                     <div className="flex flex-row justify-start mt-8">
                         <TabButton
