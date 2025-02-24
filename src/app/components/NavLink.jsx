@@ -1,8 +1,8 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
-const NavLink = ({ href, title }) => {
+const NavLink = ({ href, title, onClick }) => {
     return (
         <motion.div
             className="relative"
@@ -12,6 +12,12 @@ const NavLink = ({ href, title }) => {
             <Link
                 href={href}
                 className="block py-2 pl-3 pr-4 text-[var(--text)] sm:text-xl rounded md:p-0 hover:text-[var(--secondary)]"
+                onClick={(e) => {
+                    if (onClick) {
+                        e.preventDefault(); // Previene la navigazione se onClick è definito
+                        onClick();
+                    }
+                }}
             >
                 {title}
             </Link>
