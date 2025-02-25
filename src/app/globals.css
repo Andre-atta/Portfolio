@@ -4,7 +4,7 @@
 
 :root {
   --background: #121212;
-  --foreground: #dfdede;
+  --foreground: #F5FBEF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,31 +20,26 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Stili per le stagioni */
 body.winter {
-  --primary: #1a2d77;
-  --secondary: #4389fa;
-  --text: #FFFFFF;
-  /*--text: #ADB7BE;*/
+  --primary: #1A2D77;
+  --secondary: #4389FA;
+  --text: #F4F4F4;
 }
 
 body.spring {
-  --primary: #22c55e;
-  --secondary: #22c55d;
-  --text: #4ADE80;
-  /*--text: #FFFFFF;*/
+  --primary: #223F12;
+  --secondary: #559F2D;
+  --text: #F4F4F4;
 }
 
 body.summer {
-  --primary: #F59E0B;
-  --secondary: #FDE68A;
-  --text: #FCD34D;
-  /*--text: #FFFFFF;*/
+  --primary: #ff1414; /* Rosa acceso, vivace e tropicale */
+  --secondary: #008cff; /* Azzurro brillante, fresco e marino */
+  --text: #F4F4F4;
 }
 
 body.autumn {
-  --primary: #7C4608;
-  --secondary: #F15C30;
-  --text: #F9AD77;
-  /*--text: #FFFFFF;*/
+  --primary: #8B4513;
+  --secondary: #D2691E;
+  --text: #F4F4F4;
 }
