@@ -5,6 +5,9 @@ import TechnologyTag from "@/app/components/ui/TechnologyTag";
 import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 
 const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl, technologies, status, isExpanded, onClick }) => {
+    if (status === "Not Started")
+        return null;
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -14,18 +17,15 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl, technolog
             className={`rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-[var(--primary)] ${isExpanded ? "col-span-2" : ""}`}
             onClick={onClick}
         >
-            {/* Immagine del progetto */}
-            <div className="w-full h-48 md:h-64 bg-cover bg-center relative">
+            <div className="w-full h-36 md:h-48 bg-cover bg-center relative">
                 <div
                     className="w-full h-full bg-cover bg-center"
                     style={{ backgroundImage: `url(${imgUrl})` }}
                 />
-                {/* Overlay scuro per migliorare il contrasto */}
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                {/* Bottoni visibili solo al passaggio del mouse */}
+                <div className="absolute inset-0 bg-black bg-opacity-20 rounded-t-lg"></div>
                 <motion.div
-                    className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 hover:opacity-100 transition-opacity duration-300"
-                    whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+                    className='absolute inset-0 flex items-center justify-center gap-4 opacity-0 hover:opacity-100 transition-opacity duration-300'
+                    whileHover={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
                 >
                     {gitUrl && (
                         <Link
@@ -49,25 +49,25 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl, technolog
             </div>
 
             {/* Contenuto della card */}
-            <div className="w-full p-6 bg-[var(--background)]">
-                <div className="flex items-center justify-between mb-4">
-                    <h5 className="text-2xl font-bold text-[var(--secondary)] truncate">
+            <div className="w-full p-4 bg-[var(--background)]">
+                <div className="flex items-center justify-between mb-2">
+                    <h5 className="text-xl font-bold text-[var(--secondary)] truncate">
                         {title}
                     </h5>
-                    <span className={`text-sm font-semibold px-3 py-1 rounded-full 
-                            ${status === "Completed" ? "bg-green-500" : status === "In Progress" ? "bg-yellow-500" : "bg-gray-500"}`}
+                    <span className={`text-sm font-semibold px-2 py-1 rounded-full 
+                            ${status === "Completed" ? "bg-green-500" : "bg-yellow-500"}`}
                     >
                         {status}
                     </span>
                 </div>
-                <p className="text-[var(--text)] text-justify text-sm lg:text-lg leading-relaxed line-clamp-3 mb-4">
+                <p className="text-[var(--text)] text-justify text-sm leading-relaxed line-clamp-3 mb-2">
                     {description}
                 </p>
-                <div className="mb-4">
-                    <h6 className="text-lg font-semibold text-[var(--secondary)] mb-2">
+                <div className="mb-2">
+                    <h6 className="text-base font-semibold text-[var(--secondary)] mb-1">
                         Technologies:
                     </h6>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1">
                         {technologies.map((tech, index) => (
                             <TechnologyTag key={index} technology={tech} />
                         ))}

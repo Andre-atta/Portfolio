@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import TechnologyTag from "@/app/components/ui/TechnologyTag";
 import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 
-const ProjectCardList = ({ imgUrl, title, description, gitUrl, previewUrl, technologies, status, isExpanded, onClick }) => {
+const ProjectCardList = ({ imgUrl, title, description, gitUrl, previewUrl, technologies, status, onClick }) => {
+    if (status === "Not Started")
+        return null;
+
     return (
         <motion.div
             className="flex flex-col md:flex-row items-center bg-[var(--background)] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-[var(--primary)]"
@@ -14,14 +17,12 @@ const ProjectCardList = ({ imgUrl, title, description, gitUrl, previewUrl, techn
             whileHover={{ scale: 1.02 }}
             onClick={onClick}
         >
-            {/* Immagine del progetto */}
             <div className="w-full md:w-1/3 h-48 md:h-64 bg-cover bg-center relative">
                 <div
-                    className="w-full h-full bg-cover bg-center rounded-lg"
+                    className="w-full h-full bg-cover bg-center rounded-l-lg"
                     style={{ backgroundImage: `url(${imgUrl})` }}
                 />
-                {/* Overlay scuro per migliorare il contrasto */}
-                <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-20 rounded-l-lg"></div>
                 <motion.div
                     className="absolute inset-0 flex items-center justify-center gap-4"
                     whileHover={{ opacity: 1, backgroundColor: "rgba(0, 0, 0, 0.5)" }}
@@ -43,7 +44,6 @@ const ProjectCardList = ({ imgUrl, title, description, gitUrl, previewUrl, techn
                 </motion.div>
             </div>
 
-            {/* Contenuto della card */}
             <div className="w-full md:w-2/3 p-6 h-48 md:h-64 flex flex-col justify-between">
                 <div>
                     <div className="flex items-center justify-between mb-4">
@@ -51,7 +51,7 @@ const ProjectCardList = ({ imgUrl, title, description, gitUrl, previewUrl, techn
                             {title}
                         </h5>
                         <span className={`text-sm font-semibold px-3 py-1 rounded-full 
-                                ${status === "Completed" ? "bg-green-500" : status === "In Progress" ? "bg-yellow-500" : "bg-gray-500"}`}
+                                        ${status === "Completed" ? "bg-green-500" : "bg-yellow-500"}`}
                         >
                             {status}
                         </span>
@@ -61,7 +61,7 @@ const ProjectCardList = ({ imgUrl, title, description, gitUrl, previewUrl, techn
                     </p>
                 </div>
                 <div className="mb-4">
-                    <h6 className="text-lg font-semibold text-[var(--secondary)] mb-2">
+                    <h6 className="text-lg font-semibold text-[var(--secondary)] mt-2 mb-2">
                         Technologies:
                     </h6>
                     <div className="flex flex-wrap gap-2">

@@ -32,6 +32,7 @@ const ProjectControls = ({ tag, handleTagChange, setViewMode, showFilterMenu, se
                         <div className="p-2">
                             <ProjectTag onClick={handleTagChange} name="All" isSelected={tag === "All"} />
                             <ProjectTag onClick={handleTagChange} name="Web" isSelected={tag === "Web"} />
+                            <ProjectTag onClick={handleTagChange} name="Uni" isSelected={tag === "Uni"} />
                             <ProjectTag onClick={handleTagChange} name="Mobile" isSelected={tag === "Mobile"} />
                             <ProjectTag onClick={handleTagChange} name="Other" isSelected={tag === "Other"} />
                         </div>

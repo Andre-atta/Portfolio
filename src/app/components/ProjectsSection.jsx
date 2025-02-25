@@ -7,9 +7,9 @@ import RoundedEmpty from "./button/RoundedEmpty";
 import ProjectControls from "./ui/ProjectControls";
 import projectsData from "@/app/utils/projectsData";
 import ProjectCardList from "./card/ProjectCardList";
+import ProjectDetailCard from "./card/ProjectDetailCard";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 import React, { useEffect, useRef, useState } from "react";
-import ProjectDetailCard from "./card/ProjectDetailCard";
 
 const ProjectsSection = () => {
     const filterMenuRef = useRef(null);
