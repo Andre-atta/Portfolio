@@ -22,7 +22,7 @@ const TAB_DATA = [
         id: "education",
         content: (
             <ul className="list-disc pl-2" style={{ color: "var(--text)" }}>
-                <li>Remondini indirizzo logistico</li>
+                <li>IIS G.A. Remondini Logistics & Transportation Curriculum</li>
                 <li>ICT student at Ca&apos; Foscari University of Venice</li>
             </ul>
         ),
@@ -55,13 +55,13 @@ const AboutSection = () => {
                 <Image src="/images/about-image.png" width={500} height={500}  alt="Me_myself_and_I"/>
                 <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
                     <h2 className="border-b-2 border-[var(--primary)] text-4xl font-bold text-[var(--secondary)] pb-2 mb-3">
-                        🔮About Me
+                        About Me
                     </h2>
                     <p className=" text-justify text-base lg:text-lg">
                         I am a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
                         Driven by curiosity and creativity, I enjoy tackling challenges and exploring new ideas.
                         While coding may not be my greatest strength, I embrace problem-solving with enthusiasm.
-                        Beyond tech, I have a passion for photography and stay active through calisthenics.
+                        Beyond tech, I have a passion for photography, music and cinema. Also I&apos;m a calisthenics bro.
                     </p>
                     <div className="flex flex-row justify-start mt-8">
                         <TabButton
