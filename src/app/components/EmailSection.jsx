@@ -18,6 +18,7 @@ const EmailSection = () => {
         };
         console.log('Form data:', data);
         const JSONdata = JSON.stringify(data);
+        // const endpoint = "/send-email";
         const endpoint = "/api/send";
 
         const options = {
