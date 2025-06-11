@@ -32,8 +32,8 @@ const TAB_DATA = [
         id: "certifications",
         content: (
             <ul className="list-disc pl-2" style={{ color: "var(--text)" }}>
-                <li>Per ora solo quello di nascita</li>
-                <li>Magari è ora di prendere sto B2</li>
+                <li>ECDL</li>
+                <li>Cla B2</li>
             </ul>
         ),
     },
