@@ -58,7 +58,7 @@ const AboutSection = () => {
                         About Me
                     </h2>
                     <p className=" text-justify text-base lg:text-lg">
-                        I&apos; m a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
+                        I&apos;m a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
                         Driven by curiosity and creativity, I enjoy tackling challenges and exploring new ideas.
                         While coding may not be my greatest strength, I embrace problem-solving with enthusiasm.
                         Beyond tech, I have a passion for photography, music and cinema. Also I&apos;m a calisthenics bro.
