@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
 import HeroSection from "@/app/components/HeroSection";
