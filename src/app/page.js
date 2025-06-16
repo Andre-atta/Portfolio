@@ -8,9 +8,6 @@ import ProjectsSection from "@/app/components/ProjectsSection";
 import AchievementsSection from "@/app/components/AchievementsSection";
 
 export default function Home() {
-    console.log('API Key:', process.env.RESEND_API_KEY);
-    console.log('From Email:', process.env.FROM_EMAIL);
-
   return (
       <main className="flex min-h-screen flex-col bg-[var(--background)]">
         <Navbar/>

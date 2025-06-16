@@ -11,7 +11,7 @@ const ProjectDetailCard = ({ project, onClose }) => {
             onClick={onClose}
         >
             <div
-                className="bg-[var(--background)] rounded-lg border-2 border-[var(--primary)] p-8 max-w-2xl w-full shadow-xl"
+                className="bg-[var(--background)] rounded-lg border-2 border-[var(--primary)] p-8 md:w-2/5 max-w-4xl w-full shadow-xl overflow-y-auto max-h-[90vh]"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-center items-center mb-6">
@@ -25,7 +25,7 @@ const ProjectDetailCard = ({ project, onClose }) => {
                     height={400}
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-64 object-cover rounded-lg mb-6"
+                    className="w-full object-cover rounded-lg mb-6 aspect-video"
                 />
                 <p className="text-[var(--text)] text-lg mb-6 text-center leading-relaxed">
                     {project.description}
@@ -40,7 +40,7 @@ const ProjectDetailCard = ({ project, onClose }) => {
                         ))}
                     </div>
                 </div>
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-4 flex-wrap">
                     <Link
                         href={project.gitUrl}
                         className="flex items-center gap-2 px-6 py-3 bg-[var(--secondary)] text-[var(--text)] rounded-lg hover:bg-[var(--primary)] transition-colors"

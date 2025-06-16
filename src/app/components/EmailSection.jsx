@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import InstagramIcon from "../../../public/instagram-icon.svg";
+import RoundedFull from "@/app/components/button/RoundedFull";
 
 const EmailSection = () => {
     const [emailSubmitted, setEmailSubmitted] = useState(false);
@@ -31,7 +32,6 @@ const EmailSection = () => {
         const resData = await response.json();
 
         if (response.status === 200) {
-            console.log("Message sent.");
             setEmailSubmitted(true);
         }
     };
@@ -77,14 +77,14 @@ const EmailSection = () => {
                                 htmlFor="email"
                                 className="text-[var(--text)] block mb-2 text-bold font-medium"
                             >
-                                Your email
+                                YOUR EMAIL
                             </label>
                             <input
                                 name="email"
                                 type="email"
                                 id="email"
                                 required
-                                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                                className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
                                 placeholder="placeholder@google.com"
                             />
                         </div>
@@ -93,14 +93,14 @@ const EmailSection = () => {
                                 htmlFor="subject"
                                 className="text-[var(--text)] block mb-2 text-bold font-medium"
                             >
-                                Subject
+                                SUBJECT
                             </label>
                             <input
                                 name="subject"
                                 type="text"
                                 id="subject"
                                 required
-                                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                                className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
                                 placeholder="Just saying hi"
                             />
                         </div>
@@ -109,21 +109,20 @@ const EmailSection = () => {
                                 htmlFor="message"
                                 className="text-[var(--text)] block mb-2 text-bold font-medium"
                             >
-                                Message
+                                MESSAGE
                             </label>
                             <textarea
                                 name="message"
                                 id="message"
-                                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                                className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
                                 placeholder="Let's talk about..."
                             />
                         </div>
-                        <button
+                        <RoundedFull
                             type="submit"
-                            className="bg-[var(--secondary)] hover:bg-[var(--primary)] text-[var(--text)] font-medium py-2.5 px-5 rounded-lg w-full"
-                        >
-                            Send Message
-                        </button>
+                            text="SEND MESSAGE"
+                            className="mt-4 text-lg w-full"
+                        />
                     </form>
                 )}
             </div>

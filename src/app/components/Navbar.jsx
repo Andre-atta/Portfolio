@@ -25,7 +25,7 @@ const Navbar = () => {
 
     return (
         <nav className="fixed mx-auto top-0 left-0 right-0 z-10 bg-[var(--background)]">
-            <div className="flex container border-b-2 border-[var(--primary)] lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
+            <div className="flex container border-b-2 border-[var(--primary)] flex-wrap items-center justify-between mx-auto lg:px-8 lg:py-4 px-4 py-2">
                 <Link
                     href={"/"}
                     className="text-5xl md:text-6xl font-semibold bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent"
@@ -50,10 +50,13 @@ const Navbar = () => {
                 </div>
                 <div className="menu hidden md:block md:w-auto" id="navbar">
                     <div className="bg-[#F5FBEF] bg-opacity-100 bg-transparent mt-2">
-                        <ul className="flex p-0 md:flex-row md:space-x-16">
+                        <ul className="flex p-0 md:flex-row md:space-x-16 ">
                             {navLinks.map((link, index) => (
                                 <li key={index}>
-                                    <NavLink href={link.path} title={link.title} />
+                                    <NavLink
+                                        href={link.path}
+                                        title={link.title}
+                                    />
                                 </li>
                             ))}
                         </ul>

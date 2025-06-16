@@ -14,7 +14,7 @@ const NavLink = ({ href, title, onClick }) => {
                 className="block py-2 pl-3 pr-4 text-[var(--text)] sm:text-xl rounded md:p-0 hover:text-[var(--secondary)]"
                 onClick={(e) => {
                     if (onClick) {
-                        e.preventDefault(); // Previene la navigazione se onClick è definito
+                        e.preventDefault();
                         onClick();
                     }
                 }}
