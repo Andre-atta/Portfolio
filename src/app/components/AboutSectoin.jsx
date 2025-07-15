@@ -54,10 +54,8 @@ const TAB_DATA = [
                 </li>
                 <li>
                     <strong>IIS G.A. Remondini Logistics & Transportation Curriculum</strong> (2018 - 2023)
-                    <br />
-                    <em>High School Diploma</em>
-                    <br />
-                    Gained foundational understanding of logistics and supply chain management, developing analytical and problem-solving skills.
+                    <br /> <em>High School Diploma</em> <br />
+                        Gained foundational understanding of logistics and supply chain management, developing analytical and problem-solving skills.
                 </li>
             </ul>
         ),
@@ -110,7 +108,7 @@ const AboutSection = () => {
                         I&apos;m a student of Information Technologies and Sciences at Ca&apos; Foscari University in Venice.
                         Driven by curiosity and creativity, I enjoy tackling challenges and exploring new ideas.
                         While coding may not be my greatest strength, I embrace problem-solving with enthusiasm.
-                        Beyond tech, I have a passion for photography, music and cinema. Also I&apos;m a calisthenics bro.
+                        Beyond tech, I have a passion for photography, music, cinema and... yes, also calisthenics.
                     </p>
                     <div className="flex flex-row justify-start mt-8">
                         <TabButton

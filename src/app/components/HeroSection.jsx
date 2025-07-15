@@ -39,8 +39,10 @@ const HeroSection = () => {
                         />
                     </h1>
                     <p className="text-[var(--text)] text-base sm:text-lg mb-6 lg:text-xl max-w-prose md:max-w-2xl lg:max-w-4xl text-justify mx-auto sm:mx-0">
-                        Ricorda che i giorni di pioggia sono solo un&apos;occasione per un nuovo punto di vista
+                        Student and curious mind. I&apos;m studying IT at Ca&apos; Foscari, and while I&apos;m not a coding wizard (yet), I enjoy learning and getting my hands dirty with ideas.
+                        I&apos;m also into photography, music, movies... and yes, calisthenics too.
                     </p>
+
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Link href="/cv.pdf">
                             <RoundedFull text="Download CV" />
