@@ -28,7 +28,7 @@ const Navbar = () => {
             <div className="flex border-b-2 border-[var(--primary)] flex-wrap items-center justify-between mx-auto lg:px-8 lg:py-4 px-4 py-2">
                 <Link
                     href={"/"}
-                    className="text-5xl md:text-6xl font-semibold bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent"
+                    className="text-4xl md:text-6xl font-semibold bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent"
                 > Andre-atta
                 </Link>
                 <div className="mobile-menu block md:hidden">
