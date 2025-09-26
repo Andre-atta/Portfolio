@@ -1,16 +1,23 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const RoundedEmpty = ({ text, onClick, children }) => {
     return (
-        <button
-            className="inline-block w-full  rounded-xl bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] hover:bg-slate-800 text-[var(--text)] transition-colors duration-200 p-1"
+        <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block w-full rounded-xl
+                 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]
+                 p-[2px] shadow-md hover:shadow-[0_0_12px_var(--secondary)]
+                 transition-all duration-300"
             onClick={onClick}
         >
-            <span className="bg-[var(--background)] hover:bg-slate-800 rounded-xl text-sm px-6 py-2 flex items-center justify-center w-full">
-                {children && <span className="mr-3">{children}</span>}
-                {text && <span className="text-sm font-semibold">{text}</span>}
-            </span>
-        </button>
+      <span className="bg-[var(--background)] rounded-xl text-sm px-6 py-2 flex items-center justify-center w-full
+                       text-[var(--text)] font-semibold">
+        {children && <span className="mr-3">{children}</span>}
+          {text}
+      </span>
+        </motion.button>
     );
 };
 

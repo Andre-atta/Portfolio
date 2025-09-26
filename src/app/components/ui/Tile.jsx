@@ -7,6 +7,11 @@ const Tile = ({ className = "" }) => {
                 zIndex: 1,
                 backgroundColor: "#7c3aed",
             }}
+            whileTap={{
+                scale: 1.2,
+                backgroundColor: "var(--primary)"
+            }}
+
             transition={{
                 duration: 0.3,
                 ease: "easeOut",
