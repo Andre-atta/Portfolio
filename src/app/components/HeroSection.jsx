@@ -30,9 +30,10 @@ const HeroSection = () => {
                             className="text-center md:text-left px-4 sm:px-8 md:px-0"
                         >
                             <h1 className="mb-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-[var(--text)]">
-                                <span className="block whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display">
+                                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display">
                                   Hello, I&apos;m
                                 </span>
+
 
                                 <TypeAnimation
                                     sequence={[
