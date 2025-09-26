@@ -61,7 +61,7 @@ const EmailSection = () => {
                     try my best to get back to you!
                 </p>
                 <div className="socials flex flex-row gap-2" >
-                    <Link href="https://linkedin.com">
+                    <Link href="https://www.linkedin.com/in/andrea-francesco-ivo-andreatta-310a4b32a/">
                         <Image src={LinkedinIcon} alt="Linkedin Icon" />
                     </Link>
                     <Link href="https://www.instagram.com/andre__atta/">
@@ -70,12 +70,12 @@ const EmailSection = () => {
                     <Link href="https://github.com/Andre-atta">
                         <Image src={GithubIcon} alt="Github Icon" />
                     </Link>
-                    <Link href="https://open.spotify.com/user/vgjmmtcjkole4pkx5n11wi6nc?si=938d5eaac1da4aeb">
-                        <Image src={SpotifyIcon} alt="Spotify Icon" />
-                    </Link>
-                    <Link href="https://boxd.it/7DcNB">
-                        <Image src={LetterboxdIcon} alt="Letterboxd Icon" />
-                    </Link>
+                    {/*<Link href="https://open.spotify.com/user/vgjmmtcjkole4pkx5n11wi6nc?si=938d5eaac1da4aeb">*/}
+                    {/*    <Image src={SpotifyIcon} alt="Spotify Icon" />*/}
+                    {/*</Link>*/}
+                    {/*<Link href="https://boxd.it/7DcNB">*/}
+                    {/*    <Image src={LetterboxdIcon} alt="Letterboxd Icon" />*/}
+                    {/*</Link>*/}
                 </div>
             </div>
             <div>
