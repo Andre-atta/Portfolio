@@ -1,10 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
 import TabButton from "./button/TabButton";
-import React, { useTransition, useState } from "react";
-
-import { FaFigma, FaJava, FaReact } from "react-icons/fa";
+import NeonGrid from "@/app/components/ui/NeonGrid";
 import { SiFlutter, SiCplusplus } from "react-icons/si";
+import { FaFigma, FaJava, FaReact } from "react-icons/fa";
+import React, { useTransition, useState, useRef, useEffect } from "react";
 
 const skills = [
     { name: "Figma", level: 85, icon: <FaFigma className="text-xl" /> },
@@ -88,6 +87,8 @@ const TAB_DATA = [
 const AboutSection = () => {
     const [tab, setTab] = useState("skills");
     const [isPending, startTransition] = useTransition();
+    const [inView, setInView] = useState(false);
+    const sectionRef = useRef(null);
 
     const handleTabChange = (id) => {
         startTransition(() => {
@@ -95,17 +96,41 @@ const AboutSection = () => {
         });
     };
 
-    return (
-        <section className="relative text-[var(--text)] overflow-hidden group" id="about">
-            {/* Background grid + vignette */}
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                } else {
+                    setInView(false);
+                }
+            },
+            { threshold: 0.2 } // almeno il 20% visibile
+        );
 
-            <div className="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-12 py-16">
-                <h2 className="border-b-2 border-[var(--primary)] text-4xl font-bold text-[var(--secondary)] mb-12 text-center lg:text-left">
+        if (sectionRef.current) observer.observe(sectionRef.current);
+
+        return () => {
+            if (sectionRef.current) observer.unobserve(sectionRef.current);
+        };
+    }, []);
+
+    return (
+        <section
+            ref={sectionRef}
+            className="relative w-full min-h-screen overflow-hidden flex items-center pt-24 sm:pt-32 lg:pt-36"
+            id="about"
+        >
+            <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+                <NeonGrid active={inView} />
+            </div>
+
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+                <h2 className="border-b-4 border-[var(--primary)] text-5xl font-extrabold text-[var(--secondary)] mb-14 text-center lg:text-left drop-shadow-lg">
                     About Me
                 </h2>
-
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <p className="text-justify text-base lg:text-lg leading-relaxed">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <p className="text-justify text-[var(--text)] text-base lg:text-lg leading-relaxed">
                         I&apos;m a student of Information Technologies and Sciences at Ca&apos;Foscari University in Venice.
                         Currently studying IT at Ca&apos;Foscari, I enjoy experimenting with web and mobile apps, building small projects, and learning by doing.
                         Beyond tech, I have a passion for photography, cinema, music and, also, calisthenics.

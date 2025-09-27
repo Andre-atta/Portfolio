@@ -25,6 +25,7 @@ body {
 body {
   --primary: rgb(75, 0, 130);
   --secondary: rgb(255, 0, 110);
+  --accent: rgb(0, 200, 255);
 }
 
 /*body {*/
