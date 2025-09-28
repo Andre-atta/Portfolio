@@ -52,3 +52,22 @@ body {
 /*  --primary: #8B4513;*/
 /*  --secondary: #D2691E;*/
 /*}*/
+
+/*About section grid*/
+.bg-grid {
+    background-image:
+            repeating-linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.1) 0,
+                    rgba(255,255,255,0.1) 1px,
+                    transparent 1px,
+                    transparent 70px
+            ),
+            repeating-linear-gradient(
+                    0deg,
+                    rgba(255,255,255,0.1) 0,
+                    rgba(255,255,255,0.1) 1px,
+                    transparent 1px,
+                    transparent 70px
+            );
+}

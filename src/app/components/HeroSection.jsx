@@ -88,10 +88,11 @@ const HeroSection = () => {
                                 <Image
                                     src="/images/hero-image.svg"
                                     alt="wizard hero"
-                                    className="absolute transform -translate-x-1/2 -translate-y-1/2
-                             top-1/2 left-1/2 drop-shadow-xl"
                                     width={340}
                                     height={340}
+                                    priority
+                                    fetchPriority="high"
+                                    className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 drop-shadow-xl"
                                 />
                             </motion.div>
                         </motion.div>

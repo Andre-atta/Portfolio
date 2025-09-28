@@ -4,6 +4,7 @@ import NeonGrid from "@/app/components/ui/NeonGrid";
 import { SiFlutter, SiCplusplus } from "react-icons/si";
 import { FaFigma, FaJava, FaReact } from "react-icons/fa";
 import React, { useTransition, useState, useRef, useEffect } from "react";
+import Pill from "@/app/components/button/Pill";
 
 const skills = [
     { name: "Figma", level: 85, icon: <FaFigma className="text-xl" /> },
@@ -121,9 +122,7 @@ const AboutSection = () => {
             className="relative w-full min-h-screen overflow-hidden flex items-center pt-24 sm:pt-32 lg:pt-36"
             id="about"
         >
-            <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-                <NeonGrid active={inView} />
-            </div>
+            <div className="absolute inset-0 bg-grid opacity-30 animate-pulse" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
                 <h2 className="border-b-4 border-[var(--primary)] text-5xl font-extrabold text-[var(--secondary)] mb-14 text-center lg:text-left drop-shadow-lg">
