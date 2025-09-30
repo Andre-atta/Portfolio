@@ -1,13 +1,17 @@
 "use client";
 import Link from 'next/link';
+import {TbBrandNextjs} from "react-icons/tb";
 import Pill from "@/app/components/button/Pill";
+import {RiTailwindCssFill} from "react-icons/ri";
 import SpotifyIcon from "./icons/spotify-icon.svg";
-import LetterboxdIcon from "./icons/letterboxd-icon.svg";
+import StarryBackground from "./ui/StarryBackground";
 import InstagramIcon from "./icons/instagram-icon.svg";
 import { SiFlutter, SiCplusplus } from "react-icons/si";
+import LetterboxdIcon from "./icons/letterboxd-icon.svg";
 import { FaFigma, FaJava, FaReact } from "react-icons/fa";
 import React, { useState, useRef, useEffect } from "react";
-import StarryBackground from "./ui/StarryBackground";
+import TerminalWindow from "./ui/TerminalWindow";
+import { motion, useInView } from "framer-motion";
 
 const spaceshipPositions = [
     { top: '10%', left: '5%', size: 'w-20 h-20 sm:w-24 sm:h-24', z: 20 },
@@ -28,60 +32,47 @@ const spaceships = [
 const skills = [
     { name: "Figma", level: 85, icon: <FaFigma className="text-xl" /> },
     { name: "C++", level: 75, icon: <SiCplusplus className="text-xl" /> },
+    { name: "React", level: 60, icon: <FaReact className="text-xl" /> },
+    { name: "Tailwind CSS", level: 60, icon: <RiTailwindCssFill className="text-xl"/>  },
     { name: "Java", level: 50, icon: <FaJava className="text-xl" /> },
+    { name: "Next.js", level: 40, icon: <TbBrandNextjs  className="text-xl" /> },
     { name: "Flutter", level: 30, icon: <SiFlutter className="text-xl" /> },
-    { name: "Next.js", level: 30, icon: <FaReact className="text-xl" /> },
 ];
 
-const TerminalWindow = ({ title, children, delay = 0, className = "" }) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), delay);
-        return () => clearTimeout(timer);
-    }, [delay]);
-
-    return (
-        <div
-            className={`transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${className}`}
-            style={{
-                background: 'rgba(0, 0, 0, 0.8)',
-                border: '2px solid var(--primary)',
-                borderRadius: '8px',
-                boxShadow: '0 0 20px rgba(var(--primary-rgb), 0.3), inset 0 0 20px rgba(var(--primary-rgb), 0.1)',
-            }}
-        >
-            <div
-                className="flex items-center justify-between px-4 py-2 border-b-2"
-                style={{ borderColor: 'var(--secondary)', background: 'rgba(75, 0, 130, 0.3)' }}
-            >
-                <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <span className="text-sm font-mono font-bold" style={{ color: 'var(--accent)', textShadow: '0 0 8px var(--accent)' }}>
-                    {title}
-                </span>
-                <div className="w-3 h-3"></div>
-            </div>
-            <div className="p-4 font-mono">
-                {children}
-            </div>
-        </div>
-    );
-};
 
 const AboutSection = () => {
     const [activeTab, setActiveTab] = useState("skills");
+    const leftRef = useRef(null);
+    const rightRef = useRef(null);
+    const leftInView = useInView(leftRef, { once: false, margin: "-100px" });
+    const rightInView = useInView(rightRef, { once: false, margin: "-100px" });
+
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 40 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
+    };
+
+    const fadeInStagger = {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.12 } }
+    };
 
     const renderContent = () => {
         switch(activeTab) {
             case "skills":
                 return (
-                    <div className="space-y-4">
+                    <motion.div
+                        variants={fadeInStagger}
+                        initial="hidden"
+                        animate="visible"
+                        className="space-y-4"
+                    >
                         {skills.map((skill, index) => (
-                            <div key={skill.name} className="skill-item" style={{ animationDelay: `${index * 100}ms` }}>
+                            <motion.div
+                                key={skill.name}
+                                variants={fadeInUp}
+                                className="skill-item"
+                            >
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="flex items-center gap-3 text-white">
                                         <span style={{ color: 'var(--accent)' }}>{skill.icon}</span>
@@ -99,14 +90,19 @@ const AboutSection = () => {
                                         boxShadow: '0 0 10px var(--accent)'
                                     }} />
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 );
             case "education":
                 return (
-                    <div className="space-y-5 text-white">
-                        <div className="flex items-start gap-3">
+                    <motion.div
+                        variants={fadeInStagger}
+                        initial="hidden"
+                        animate="visible"
+                        className="space-y-5 text-white"
+                    >
+                        <motion.div variants={fadeInUp} className="flex items-start gap-3">
                             <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{'>'}</span>
                             <div>
                                 <div className="font-bold text-lg" style={{ color: 'var(--secondary)' }}>
@@ -119,8 +115,8 @@ const AboutSection = () => {
                                     → Data Structures, Algorithms, OOP
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex items-start gap-3">
+                        </motion.div>
+                        <motion.div variants={fadeInUp} className="flex items-start gap-3">
                             <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{'>'}</span>
                             <div>
                                 <div className="font-bold text-lg" style={{ color: 'var(--secondary)' }}>
@@ -133,33 +129,37 @@ const AboutSection = () => {
                                     → Supply chain management & analytics
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 );
             case "learning":
                 return (
-                    <div className="space-y-4 text-white">
+                    <motion.div
+                        variants={fadeInStagger}
+                        initial="hidden"
+                        animate="visible"
+                        className="space-y-4 text-white"
+                    >
                         {[
                             { name: 'Flutter & Dart', desc: 'Mobile apps with Riverpod state management' },
                             { name: 'Firebase', desc: 'Auth, Firestore, cloud storage' },
                             { name: 'Next.js', desc: 'React, Tailwind CSS, SSR' }
                         ].map((item) => (
-                            <div key={item.name} className="flex items-start gap-3">
+                            <motion.div variants={fadeInUp} key={item.name} className="flex items-start gap-3">
                                 <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{'[+]'}</span>
                                 <div>
                                     <div className="font-bold text-base" style={{ color: 'var(--secondary)' }}>{item.name}</div>
                                     <div className="text-sm mt-1 opacity-90">{item.desc}</div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 );
             default:
                 return null;
         }
     };
 
-    // Estrai le navicelle social (solo quelle con link)
     const socialSpaceships = spaceships.filter(ship => ship.link && ship.logo);
 
     return (
@@ -191,7 +191,13 @@ const AboutSection = () => {
                     {'>'} ABOUT_ME.exe
                 </Link>
                 <div className="grid lg:grid-cols-2 gap-6">
-                    <div className="space-y-6">
+                    <motion.div
+                        ref={leftRef}
+                        variants={fadeInUp}
+                        initial="hidden"
+                        animate={leftInView ? "visible" : "hidden"}
+                        className="space-y-6"
+                    >
                         {/* Terminale Bio */}
                         <TerminalWindow title="bio.txt" delay={0}>
                             <div className="flex items-center gap-2 mb-3">
@@ -249,10 +255,13 @@ const AboutSection = () => {
                                 </div>
                             </div>
                         </TerminalWindow>
-                    </div>
-
-                    {/* Colonna destra: Contenuto dinamico */}
-                    <div>
+                    </motion.div>
+                    <motion.div
+                        ref={rightRef}
+                        variants={fadeInUp}
+                        initial="hidden"
+                        animate={rightInView ? "visible" : "hidden"}
+                    >
                         <TerminalWindow
                             title={`${activeTab}.log`}
                             delay={400}
@@ -287,7 +296,7 @@ const AboutSection = () => {
                                 renderContent()
                             )}
                         </TerminalWindow>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

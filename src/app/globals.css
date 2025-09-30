@@ -3,29 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #FFFFFF;
-  --text: #FFFFFF;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
     --background: #000000;
     --foreground: #FFFFFF;
     --text: #FFFFFF;
-  }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #000000;
+        --foreground: #FFFFFF;
+        --text: #FFFFFF;
+    }
 }
 
 body {
-  color: rgb(var(--foreground));
-  background: var(--background);
-  font-family: 'JetBrains Mono', monospace;
+    color: rgb(var(--foreground));
+    background: var(--background);
+    font-family: 'JetBrains Mono', monospace;
 }
 
 body {
-  --primary: rgb(75, 0, 130);
-  --secondary: rgb(255, 0, 110);
-  --accent: rgb(0, 200, 255);
+    --primary: rgb(75, 0, 130);
+    --secondary: rgb(255, 0, 110);
+    --accent: rgb(0, 200, 255);
 }
 
 /*body {*/
@@ -70,4 +70,25 @@ body {
                     transparent 1px,
                     transparent 70px
             );
+}
+
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(34, 211, 238, 0.4);
+    border-radius: 4px;
+    border: 1px solid rgba(34, 211, 238, 0.6);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(34, 211, 238, 0.6);
 }

@@ -20,13 +20,13 @@ export default function Home() {
             <section className="snap-start">
                 <AboutSection />
             </section>
-            <section className="snap-start h-screen flex items-center pt-24 sm:pt-32 lg:pt-36">
-                <div className="container mx-auto px-12 py-4">
+            <section className="snap-start min-h-[80vh] md:h-screen flex items-center pt-16 md:pt-24 sm:pt-32 lg:pt-36 pb-16 md:pb-0">
+                <div className="container mx-auto px-4 md:px-12 py-4">
                     <ProjectsSection/>
                 </div>
             </section>
-            <section className="snap-start h-screen flex items-center pt-24 sm:pt-32 lg:pt-36">
-                <div className="container mx-auto px-12 py-4">
+            <section className="snap-start min-h-[80vh] md:h-screen flex items-center pt-16 md:pt-24 sm:pt-32 lg:pt-36 pb-16 md:pb-0">
+                <div className="container mx-auto px-4 md:px-12 py-4">
                     <EmailSection/>
                 </div>
             </section>
