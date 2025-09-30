@@ -6,6 +6,7 @@ import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import InstagramIcon from "../../../public/instagram-icon.svg";
 import RoundedFull from "@/app/components/button/RoundedFull";
+import TerminalWindow from "@/app/components/ui/TerminalWindow";
 
 const EmailSection = () => {
     const [emailSubmitted, setEmailSubmitted] = useState(false);
@@ -71,68 +72,70 @@ const EmailSection = () => {
                 </div>
             </div>
             <div>
-                {emailSubmitted ? (
-                    <p className="text-green-500 text-sm mt-2">
-                        Email sent successfully!
-                    </p>
-                ) : (
-                    <form className="flex flex-col" onSubmit={handleSubmit}>
-                        <div className="mb-6">
-                            <label
-                                htmlFor="email"
-                                className="text-[var(--text)] block mb-2 text-bold font-medium"
-                            >
-                                YOUR EMAIL
-                            </label>
-                            <input
-                                name="email"
-                                type="email"
-                                id="email"
-                                required
-                                className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
-                                placeholder="placeholder@google.com"
+                <TerminalWindow title="contact.sh" delay={0}>
+                    {emailSubmitted ? (
+                        <p className="text-green-500 text-sm mt-2">
+                            Email sent successfully!
+                        </p>
+                    ) : (
+                        <form className="flex flex-col" onSubmit={handleSubmit}>
+                            <div className="mb-6">
+                                <label
+                                    htmlFor="email"
+                                    className="text-[var(--text)] block mb-2 text-bold font-medium"
+                                >
+                                    YOUR EMAIL
+                                </label>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    id="email"
+                                    required
+                                    className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
+                                    placeholder="placeholder@google.com"
+                                />
+                            </div>
+                            <div className="mb-6">
+                                <label
+                                    htmlFor="subject"
+                                    className="text-[var(--text)] block mb-2 text-bold font-medium"
+                                >
+                                    SUBJECT
+                                </label>
+                                <input
+                                    name="subject"
+                                    type="text"
+                                    id="subject"
+                                    required
+                                    className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
+                                    placeholder="Just saying hi"
+                                />
+                                <input type="text" name="bot-field" className="hidden" tabIndex="-1" autoComplete="off" />
+                            </div>
+                            <div className="mb-6">
+                                <label
+                                    htmlFor="message"
+                                    className="text-[var(--text)] block mb-2 text-bold font-medium"
+                                >
+                                    MESSAGE
+                                </label>
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    required
+                                    minLength={10}
+                                    className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
+                                    placeholder="Let's talk about..."
+                                />
+                            </div>
+                            <RoundedFull
+                                type="submit"
+                                text="SEND MESSAGE"
+                                className="mt-4 text-lg w-full"
                             />
-                        </div>
-                        <div className="mb-6">
-                            <label
-                                htmlFor="subject"
-                                className="text-[var(--text)] block mb-2 text-bold font-medium"
-                            >
-                                SUBJECT
-                            </label>
-                            <input
-                                name="subject"
-                                type="text"
-                                id="subject"
-                                required
-                                className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
-                                placeholder="Just saying hi"
-                            />
-                            <input type="text" name="bot-field" className="hidden" tabIndex="-1" autoComplete="off" />
-                        </div>
-                        <div className="mb-6">
-                            <label
-                                htmlFor="message"
-                                className="text-[var(--text)] block mb-2 text-bold font-medium"
-                            >
-                                MESSAGE
-                            </label>
-                            <textarea
-                                name="message"
-                                id="message"
-                                required
-                                minLength={10}
-                                className="bg-[#18191E] border border-[var(--primary)] placeholder-[#9CA2A9] text-[var(--text)] text-m rounded block w-full p-2.5"
-                                placeholder="Let's talk about..."
-                            />
-                        </div>
-                        <RoundedFull
-                            type="submit"
-                            text="SEND MESSAGE"
-                            className="mt-4 text-lg w-full"
-                        />
-                    </form>
-                )} {errorMessage && ( <p className="text-red-500 text-sm mt-2">{errorMessage}</p>)}
+                        </form>
+                    )} {errorMessage && ( <p className="text-red-500 text-sm mt-2">{errorMessage}</p>)}
+                </TerminalWindow>
             </div>
         </section>
     );

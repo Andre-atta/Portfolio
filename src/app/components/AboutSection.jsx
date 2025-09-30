@@ -1,13 +1,16 @@
 "use client";
 import Link from 'next/link';
+import {TbBrandNextjs} from "react-icons/tb";
 import Pill from "@/app/components/button/Pill";
+import {RiTailwindCssFill} from "react-icons/ri";
 import SpotifyIcon from "./icons/spotify-icon.svg";
-import LetterboxdIcon from "./icons/letterboxd-icon.svg";
+import StarryBackground from "./ui/StarryBackground";
 import InstagramIcon from "./icons/instagram-icon.svg";
 import { SiFlutter, SiCplusplus } from "react-icons/si";
+import LetterboxdIcon from "./icons/letterboxd-icon.svg";
 import { FaFigma, FaJava, FaReact } from "react-icons/fa";
 import React, { useState, useRef, useEffect } from "react";
-import StarryBackground from "./ui/StarryBackground";
+import TerminalWindow from "./ui/TerminalWindow";
 
 const spaceshipPositions = [
     { top: '10%', left: '5%', size: 'w-20 h-20 sm:w-24 sm:h-24', z: 20 },
@@ -28,49 +31,13 @@ const spaceships = [
 const skills = [
     { name: "Figma", level: 85, icon: <FaFigma className="text-xl" /> },
     { name: "C++", level: 75, icon: <SiCplusplus className="text-xl" /> },
+    { name: "React", level: 60, icon: <FaReact className="text-xl" /> },
+    { name: "Tailwind CSS", level: 60, icon: <RiTailwindCssFill className="text-xl"/>  },
     { name: "Java", level: 50, icon: <FaJava className="text-xl" /> },
+    { name: "Next.js", level: 40, icon: <TbBrandNextjs  className="text-xl" /> },
     { name: "Flutter", level: 30, icon: <SiFlutter className="text-xl" /> },
-    { name: "Next.js", level: 30, icon: <FaReact className="text-xl" /> },
 ];
 
-const TerminalWindow = ({ title, children, delay = 0, className = "" }) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), delay);
-        return () => clearTimeout(timer);
-    }, [delay]);
-
-    return (
-        <div
-            className={`transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${className}`}
-            style={{
-                background: 'rgba(0, 0, 0, 0.8)',
-                border: '2px solid var(--primary)',
-                borderRadius: '8px',
-                boxShadow: '0 0 20px rgba(var(--primary-rgb), 0.3), inset 0 0 20px rgba(var(--primary-rgb), 0.1)',
-            }}
-        >
-            <div
-                className="flex items-center justify-between px-4 py-2 border-b-2"
-                style={{ borderColor: 'var(--secondary)', background: 'rgba(75, 0, 130, 0.3)' }}
-            >
-                <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <span className="text-sm font-mono font-bold" style={{ color: 'var(--accent)', textShadow: '0 0 8px var(--accent)' }}>
-                    {title}
-                </span>
-                <div className="w-3 h-3"></div>
-            </div>
-            <div className="p-4 font-mono">
-                {children}
-            </div>
-        </div>
-    );
-};
 
 const AboutSection = () => {
     const [activeTab, setActiveTab] = useState("skills");
@@ -159,7 +126,6 @@ const AboutSection = () => {
         }
     };
 
-    // Estrai le navicelle social (solo quelle con link)
     const socialSpaceships = spaceships.filter(ship => ship.link && ship.logo);
 
     return (
