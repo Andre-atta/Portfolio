@@ -28,9 +28,10 @@ const StarryBackground = () => {
   const canvasRef = useRef(null);
   const starsRef = useRef([]);
   const animationRef = useRef();
-  const dpr = window.devicePixelRatio || 1;
 
   useEffect(() => {
+    // Tutto il codice che usa window va qui dentro
+    const dpr = window.devicePixelRatio || 1;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     let width = window.innerWidth;
@@ -50,9 +51,9 @@ const StarryBackground = () => {
         ctx.globalAlpha = star.baseAlpha * twinkle;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgb(75, 0, 130)";
-        ctx.shadowColor = "rgb(255, 0, 110)";
-        ctx.shadowBlur = 7;
+        ctx.fillStyle = "#fff";
+        ctx.shadowColor = "#fff";
+        ctx.shadowBlur = 4;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
@@ -77,7 +78,7 @@ const StarryBackground = () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener("resize", handleResize);
     };
-  }, [dpr]);
+  }, []);
 
   return (
     <canvas
