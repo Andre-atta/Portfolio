@@ -3,10 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import GithubIcon from "../../../public/github-icon.svg";
-import SpotifyIcon from "../../../public/spotify-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import InstagramIcon from "../../../public/instagram-icon.svg";
-import LetterboxdIcon from "../../../public/letterboxd-icon.svg";
 import RoundedFull from "@/app/components/button/RoundedFull";
 
 const EmailSection = () => {
@@ -70,12 +68,6 @@ const EmailSection = () => {
                     <Link href="https://github.com/Andre-atta">
                         <Image src={GithubIcon} alt="Github Icon" />
                     </Link>
-                    {/*<Link href="https://open.spotify.com/user/vgjmmtcjkole4pkx5n11wi6nc?si=938d5eaac1da4aeb">*/}
-                    {/*    <Image src={SpotifyIcon} alt="Spotify Icon" />*/}
-                    {/*</Link>*/}
-                    {/*<Link href="https://boxd.it/7DcNB">*/}
-                    {/*    <Image src={LetterboxdIcon} alt="Letterboxd Icon" />*/}
-                    {/*</Link>*/}
                 </div>
             </div>
             <div>
