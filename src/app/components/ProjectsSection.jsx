@@ -1,15 +1,20 @@
 "use client";
 import dynamic from "next/dynamic";
 import projectsData from "@/app/utils/projectsData";
-import React, { useState, useMemo, useCallback } from "react";
-import ProjectCard from "@/app/components/projects/ProjectCard";
+import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 
+const ProjectCard = dynamic(() => import("@/app/components/projects/ProjectCard"), { ssr: false });
 const ProjectModal = dynamic(() => import("./modal/ProjectModal"), { ssr: false });
 
 const ProjectsSection = () => {
     const [activeTag, setActiveTag] = useState("All");
     const [selectedProject, setSelectedProject] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+    const [visibleCount, setVisibleCount] = useState(6);
+    const loadMoreRef = useRef(null);
+
+    const prefersReducedMotion = useReducedMotion();
 
     // tags
     const tags = useMemo(() => {
@@ -35,6 +40,22 @@ const ProjectsSection = () => {
         setTimeout(() => setSelectedProject(null), 200);
     }, []);
 
+    useEffect(() => {
+        if (!loadMoreRef.current) return undefined;
+        const obs = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setVisibleCount((prev) => Math.min(prev + 3, filteredProjects.length));
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+        obs.observe(loadMoreRef.current);
+        return () => obs.disconnect();
+    }, [filteredProjects.length]);
+
     return (
         <section
             className="w-full min-h-screen flex flex-col items-center justify-center py-12 px-4 bg-[var(--background)] space-y-8"
@@ -48,12 +69,13 @@ const ProjectsSection = () => {
                             NO PROJECTS AVAILABLE
                         </div>
                     ) : (
-                        filteredProjects.map((project) => (
-                            <ProjectCard key={project.id} project={project} onClick={openModal} />
+                        filteredProjects.slice(0, visibleCount).map((project) => (
+                            <ProjectCard key={project.id} project={project} onClick={openModal} prefersReducedMotion={prefersReducedMotion} />
                         ))
                     )}
                 </div>
             </div>
+            <div ref={loadMoreRef} />
 
             <ProjectModal open={modalOpen} onClose={closeModal} project={selectedProject} />
 

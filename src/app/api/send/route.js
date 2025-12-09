@@ -9,7 +9,7 @@ export async function POST(req) {
     const { email, subject, message, ["bot-field"]: botField } = body;
 
     if (botField && botField.trim() !== "")
-        return NextResponse.json({ error: "Bot detected" }, { status: 400 });
+        return NextResponse.json({ error: "Bot deteced" }, { status: 400 });
 
     if (
         !email || !subject || !message ||

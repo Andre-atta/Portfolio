@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import TechnologyTag from "@/app/components/ui/TechnologyTag";
 
-const ProjectCard = ({ project, onClick }) => {
+const ProjectCard = ({ project, onClick, prefersReducedMotion = false }) => {
     const [glitch, setGlitch] = useState(false);
 
     useEffect(() => {
+        if (prefersReducedMotion) return undefined;
         const glitchInterval = setInterval(() => {
             if (Math.random() > 0.85) {
                 setGlitch(true);
@@ -14,7 +15,7 @@ const ProjectCard = ({ project, onClick }) => {
         }, 3000);
 
         return () => clearInterval(glitchInterval);
-    }, []);
+    }, [prefersReducedMotion]);
 
     return (
         <div className="relative flex flex-col items-center pt-8">
@@ -57,21 +58,21 @@ const ProjectCard = ({ project, onClick }) => {
                     hover:border-cyan-300
                     hover:shadow-[0_0_40px_rgba(34,211,238,0.4),inset_0_0_30px_rgba(34,211,238,0.15)]
                     shadow-[0_0_25px_rgba(34,211,238,0.3),inset_0_0_20px_rgba(34,211,238,0.1)]
-                    animate-float
+                    ${!prefersReducedMotion && 'animate-float'}
                     ${glitch ? 'animate-glitch-card' : ''}
                 `}
                 style={{
                     zIndex: 10,
                     background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.3) 100%)',
                 }}
-                whileHover={{ scale: 1.05, y: -8, boxShadow: "0 0 60px 10px #22d3ee55" }}
-                whileTap={{ scale: 0.98 }}
-                animate={{ y: [0, -12, 0], boxShadow: [
+                whileHover={!prefersReducedMotion ? { scale: 1.05, y: -8, boxShadow: "0 0 60px 10px #22d3ee55" } : undefined}
+                whileTap={!prefersReducedMotion ? { scale: 0.98 } : undefined}
+                animate={!prefersReducedMotion ? { y: [0, -12, 0], boxShadow: [
                     "0 0 25px #22d3ee4d, inset 0 0 20px #22d3ee1a",
                     "0 0 40px #22d3ee66, inset 0 0 30px #22d3ee26",
                     "0 0 25px #22d3ee4d, inset 0 0 20px #22d3ee1a"
-                ] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                ] } : undefined}
+                transition={!prefersReducedMotion ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : undefined}
             >
                 {/* Pixelated Overlay */}
                 <div

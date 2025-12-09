@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# photo albums - ignore images but keep structure
+/public/uploads/**/*.jpg
+/public/uploads/**/*.jpeg
+/public/uploads/**/*.png
+/public/uploads/**/*.gif
+/public/uploads/**/*.webp
+!/public/uploads/.gitkeep
+!/public/uploads/**/meta.json
+

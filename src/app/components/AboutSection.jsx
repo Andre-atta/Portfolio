@@ -1,76 +1,59 @@
 "use client";
-import Link from 'next/link';
-import {TbBrandNextjs} from "react-icons/tb";
-import Pill from "@/app/components/button/Pill";
-import {RiTailwindCssFill} from "react-icons/ri";
-import SpotifyIcon from "./icons/spotify-icon.svg";
-import StarryBackground from "./ui/StarryBackground";
-import InstagramIcon from "./icons/instagram-icon.svg";
-import { SiFlutter, SiCplusplus } from "react-icons/si";
-import LetterboxdIcon from "./icons/letterboxd-icon.svg";
-import { FaFigma, FaJava, FaReact } from "react-icons/fa";
-import React, { useState, useRef, useEffect } from "react";
-import TerminalWindow from "./ui/TerminalWindow";
-import { motion, useInView } from "framer-motion";
+import { SiCplusplus } from "react-icons/si";
+import { TbBrandNextjs } from "react-icons/tb";
+import React, { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { FaFigma, FaPython, FaReact } from "react-icons/fa";
+import dynamic from "next/dynamic";
 
-const spaceshipPositions = [
-    { top: '10%', left: '5%', size: 'w-20 h-20 sm:w-24 sm:h-24', z: 20 },
-    { top: '20%', left: '80%', size: 'w-16 h-16 sm:w-20 sm:h-20', z: 20 },
-    { top: '70%', left: '10%', size: 'w-16 h-16 sm:w-20 sm:h-20', z: 20 },
-    { top: '60%', left: '70%', size: 'w-14 h-14 sm:w-16 sm:h-16', z: 10 },
-    { top: '40%', left: '50%', size: 'w-12 h-12 sm:w-14 sm:h-14', z: 10 },
-];
 
-const spaceships = [
-    { logo: <SpotifyIcon className="w-full h-full" />, link: "https://open.spotify.com/user/vgjmmtcjkole4pkx5n11wi6nc?si=938d5eaac1da4aeb", color: "#1DB954" },
-    { logo: <LetterboxdIcon className="w-full h-full" />, link: "https://boxd.it/7DcNB", color: "#00D735" },
-    { logo: <InstagramIcon className="w-full h-full" />, link: "https://www.instagram.com/andre__atta/", color: "#E1306C" },
-    { logo: null, link: null, color: "var(--secondary)" },
-    { logo: null, link: null, color: "var(--accent)" },
-];
-
+// Skills data
 const skills = [
     { name: "Figma", level: 85, icon: <FaFigma className="text-xl" /> },
     { name: "C++", level: 75, icon: <SiCplusplus className="text-xl" /> },
     { name: "React", level: 60, icon: <FaReact className="text-xl" /> },
-    { name: "Tailwind CSS", level: 60, icon: <RiTailwindCssFill className="text-xl"/>  },
-    { name: "Java", level: 50, icon: <FaJava className="text-xl" /> },
-    { name: "Next.js", level: 40, icon: <TbBrandNextjs  className="text-xl" /> },
-    { name: "Flutter", level: 30, icon: <SiFlutter className="text-xl" /> },
+    { name: "Python", level: 50, icon: <FaPython className="text-xl" /> },
+    { name: "Next.js", level: 40, icon: <TbBrandNextjs className="text-xl" /> },
 ];
 
+// Dynamic imports for widgets
+const SpotifyWidget = dynamic(() => import("./widgets/SpotifyWidget"), {
+    loading: () => (
+        <div className="w-full h-48 rounded-2xl bg-white/5 animate-pulse" />
+    ),
+    ssr: false,
+});
+const LetterboxdWidget = dynamic(() => import("./widgets/LetterboxdWidget"), {
+    loading: () => (
+        <div className="w-full h-64 rounded-2xl bg-white/5 animate-pulse" />
+    ),
+    ssr: false,
+});
 
+// Main About Section
 const AboutSection = () => {
     const [activeTab, setActiveTab] = useState("skills");
-    const leftRef = useRef(null);
-    const rightRef = useRef(null);
-    const leftInView = useInView(leftRef, { once: false, margin: "-100px" });
-    const rightInView = useInView(rightRef, { once: false, margin: "-100px" });
+    const sectionRef = useRef(null);
+    const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 40 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-    };
+    const isDeveloperMode = ["skills", "education", "learning"].includes(activeTab);
 
-    const fadeInStagger = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.12 } }
-    };
-
-    const renderContent = () => {
+    // Developer Mode Content
+    const renderDeveloperContent = () => {
         switch(activeTab) {
             case "skills":
                 return (
                     <motion.div
-                        variants={fadeInStagger}
-                        initial="hidden"
-                        animate="visible"
-                        className="space-y-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="space-y-5"
                     >
                         {skills.map((skill, index) => (
                             <motion.div
                                 key={skill.name}
-                                variants={fadeInUp}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
                                 className="skill-item"
                             >
                                 <div className="flex items-center justify-between mb-2">
@@ -78,17 +61,24 @@ const AboutSection = () => {
                                         <span style={{ color: 'var(--accent)' }}>{skill.icon}</span>
                                         <span className="font-semibold text-base">{skill.name}</span>
                                     </div>
-                                    <span className="text-sm font-bold" style={{ color: 'var(--secondary)' }}>[{skill.level}%]</span>
+                                    <span className="text-sm font-bold" style={{ color: 'var(--secondary)' }}>
+                                        [{skill.level}%]
+                                    </span>
                                 </div>
-                                <div className="h-2 relative overflow-hidden rounded" style={{
-                                    background: 'rgba(75, 0, 130, 0.4)',
-                                    border: '1px solid var(--secondary)'
+                                <div className="h-2.5 relative overflow-hidden rounded-full" style={{
+                                    background: 'rgba(75, 0, 130, 0.3)',
+                                    border: '1px solid rgba(255, 0, 110, 0.3)'
                                 }}>
-                                    <div className="h-full transition-all duration-1000 ease-out" style={{
-                                        width: `${skill.level}%`,
-                                        background: `linear-gradient(90deg, var(--secondary), var(--accent))`,
-                                        boxShadow: '0 0 10px var(--accent)'
-                                    }} />
+                                    <motion.div
+                                        className="h-full rounded-full"
+                                        style={{
+                                            background: `linear-gradient(90deg, var(--secondary), var(--accent))`,
+                                            boxShadow: '0 0 10px var(--accent)'
+                                        }}
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${skill.level}%` }}
+                                        transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
+                                    />
                                 </div>
                             </motion.div>
                         ))}
@@ -97,13 +87,16 @@ const AboutSection = () => {
             case "education":
                 return (
                     <motion.div
-                        variants={fadeInStagger}
-                        initial="hidden"
-                        animate="visible"
-                        className="space-y-5 text-white"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="space-y-6 text-white"
                     >
-                        <motion.div variants={fadeInUp} className="flex items-start gap-3">
-                            <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{'>'}</span>
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex items-start gap-3"
+                        >
+                            <span className="text-xl font-bold" style={{ color: 'var(--accent)' }}>{'>'}</span>
                             <div>
                                 <div className="font-bold text-lg" style={{ color: 'var(--secondary)' }}>
                                     Ca&apos;Foscari University of Venice
@@ -116,8 +109,13 @@ const AboutSection = () => {
                                 </div>
                             </div>
                         </motion.div>
-                        <motion.div variants={fadeInUp} className="flex items-start gap-3">
-                            <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{'>'}</span>
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="flex items-start gap-3"
+                        >
+                            <span className="text-xl font-bold" style={{ color: 'var(--accent)' }}>{'>'}</span>
                             <div>
                                 <div className="font-bold text-lg" style={{ color: 'var(--secondary)' }}>
                                     IIS G.A. Remondini
@@ -135,20 +133,27 @@ const AboutSection = () => {
             case "learning":
                 return (
                     <motion.div
-                        variants={fadeInStagger}
-                        initial="hidden"
-                        animate="visible"
-                        className="space-y-4 text-white"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="space-y-5 text-white"
                     >
                         {[
                             { name: 'Flutter & Dart', desc: 'Mobile apps with Riverpod state management' },
                             { name: 'Firebase', desc: 'Auth, Firestore, cloud storage' },
                             { name: 'Next.js', desc: 'React, Tailwind CSS, SSR' }
-                        ].map((item) => (
-                            <motion.div variants={fadeInUp} key={item.name} className="flex items-start gap-3">
-                                <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{'[+]'}</span>
+                        ].map((item, index) => (
+                            <motion.div
+                                key={item.name}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                className="flex items-start gap-3"
+                            >
+                                <span className="text-xl font-bold" style={{ color: 'var(--accent)' }}>{'[+]'}</span>
                                 <div>
-                                    <div className="font-bold text-base" style={{ color: 'var(--secondary)' }}>{item.name}</div>
+                                    <div className="font-bold text-base" style={{ color: 'var(--secondary)' }}>
+                                        {item.name}
+                                    </div>
                                     <div className="text-sm mt-1 opacity-90">{item.desc}</div>
                                 </div>
                             </motion.div>
@@ -160,144 +165,154 @@ const AboutSection = () => {
         }
     };
 
-    const socialSpaceships = spaceships.filter(ship => ship.link && ship.logo);
-
     return (
-        <section className="relative w-full min-h-screen overflow-hidden flex items-center pt-10 sm:pt-16 lg:pt-20" id="about">
-            <StarryBackground />
-            {/* Navicelle decorative: visibili solo su schermi >= sm */}
-            <div className="hidden sm:block">
-                {spaceships.map((ship, i) => (
-                    <div
-                        key={i}
-                        className={`pointer-events-auto absolute ${spaceshipPositions[i].size}`}
-                        style={{
-                            top: spaceshipPositions[i].top,
-                            left: spaceshipPositions[i].left,
-                            zIndex: spaceshipPositions[i].z,
-                        }}
-                    >
-                        <Pill logo={ship.logo} link={ship.link} color={ship.color} />
-                    </div>
-                ))}
-            </div>
+        <section
+            ref={sectionRef}
+            className="relative w-full min-h-screen overflow-hidden flex items-center pt-20 sm:pt-24 lg:pt-28 pb-10"
+            id="about"
+        >
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <Link
-                    href="#about"
-                    className="flex justify-center items-center text-3xl md:text-4xl lg:text-6xl font-semibold bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent mb-10 md:pr-5 lg:pr-9 text-center w-full relative"
-                    style={{ textShadow: '0 0 3px var(--accent)' }}
-                >
-                    {'>'} ABOUT_ME.exe
-                </Link>
-                <div className="grid lg:grid-cols-2 gap-6">
-                    <motion.div
-                        ref={leftRef}
-                        variants={fadeInUp}
-                        initial="hidden"
-                        animate={leftInView ? "visible" : "hidden"}
-                        className="space-y-6"
-                    >
-                        {/* Terminale Bio */}
-                        <TerminalWindow title="bio.txt" delay={0}>
-                            <div className="flex items-center gap-2 mb-3">
-                                <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>$</span>
-                                <span className="font-semibold text-sm" style={{ color: 'var(--secondary)' }}>cat bio.txt</span>
-                            </div>
-                            <p className="leading-relaxed text-sm text-[var(--text)]">
-                                <span className="font-bold" style={{ color: 'var(--accent)' }}>{'>> '}</span>
-                                I&apos;m a student of Information Technologies and Sciences at Ca&apos;Foscari University in Venice.
-                                I enjoy experimenting with web and mobile apps, building small projects, and learning by doing.
-                            </p>
-                            <p className="leading-relaxed mt-3 text-sm text-[var(--text)]">
-                                <span className="font-bold" style={{ color: 'var(--accent)' }}>{'>> '}</span>
-                                Beyond tech, I have a passion for photography, cinema, music and calisthenics.
-                            </p>
-                        </TerminalWindow>
 
-                        {/* Terminale Tab Selector */}
-                        <TerminalWindow title="navigation.sh" delay={200}>
-                            <div className="flex items-center gap-2 mb-3">
-                                <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>$</span>
-                                <span className="font-semibold text-sm" style={{ color: 'var(--secondary)' }}>./select_view</span>
-                            </div>
-                            <div className="space-y-2">
-                                {/* Tab normali sempre visibili */}
-                                {['skills', 'education', 'learning'].map((tab) => (
-                                    <button
-                                        key={tab}
-                                        onClick={() => setActiveTab(tab)}
-                                        className="w-full text-left px-4 py-2.5 transition-all duration-300 font-mono text-sm font-semibold rounded"
-                                        style={{
-                                            color: activeTab === tab ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)',
-                                            background: activeTab === tab ? 'rgba(255, 0, 110, 0.2)' : 'transparent',
-                                            border: `2px solid ${activeTab === tab ? 'var(--secondary)' : 'transparent'}`,
-                                            boxShadow: activeTab === tab ? '0 0 15px rgba(255, 0, 110, 0.4)' : 'none'
-                                        }}
-                                    >
-                                        <span style={{ color: 'var(--accent)' }}>{activeTab === tab ? '▶' : '▷'}</span> {tab + '.sh'}
-                                    </button>
-                                ))}
-                                {/* Tab social solo su mobile */}
-                                <div className="block sm:hidden">
-                                    <button
-                                        onClick={() => setActiveTab('social')}
-                                        className="w-full text-left px-4 py-2.5 transition-all duration-300 font-mono text-sm font-semibold rounded"
-                                        style={{
-                                            color: activeTab === 'social' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)',
-                                            background: activeTab === 'social' ? 'rgba(255, 0, 110, 0.2)' : 'transparent',
-                                            border: `2px solid ${activeTab === 'social' ? 'var(--secondary)' : 'transparent'}`,
-                                            boxShadow: activeTab === 'social' ? '0 0 15px rgba(255, 0, 110, 0.4)' : 'none'
-                                        }}
-                                    >
-                                        <span style={{ color: 'var(--accent)' }}>{activeTab === 'social' ? '▶' : '▷'}</span> social-links.sh
-                                    </button>
+                {/* Content Grid */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+                >
+                    {/* Left - Visual */}
+                    <AnimatePresence mode="wait">
+                        {isDeveloperMode ? (
+                            <motion.div
+                                key="dev-visual"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.5 }}
+                                className="relative rounded-2xl overflow-hidden aspect-square lg:aspect-auto lg:min-h-[500px]"
+                                style={{
+                                    background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                                }}
+                            >
+                            {/*    SVG VA QUI */}
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="human-visual"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.5 }}
+                                className="relative flex justify-center lg:justify-start"
+                            >
+                                <div className="w-full">
+                                    <LetterboxdWidget />
                                 </div>
-                            </div>
-                        </TerminalWindow>
-                    </motion.div>
-                    <motion.div
-                        ref={rightRef}
-                        variants={fadeInUp}
-                        initial="hidden"
-                        animate={rightInView ? "visible" : "hidden"}
-                    >
-                        <TerminalWindow
-                            title={`${activeTab}.log`}
-                            delay={400}
-                            key={activeTab}
-                            className="h-full"
-                        >
-                            <div className="flex items-center gap-2 mb-4">
-                                <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>$</span>
-                                <span className="font-semibold text-sm" style={{ color: 'var(--secondary)' }}>./run {activeTab}</span>
-                                <span className="animate-pulse text-lg" style={{ color: 'var(--accent)' }}>_</span>
-                            </div>
-                            {/* Social solo su mobile e tab attiva */}
-                            {activeTab === 'social' ? (
-                                <div className="block sm:hidden">
-                                    <div className="flex flex-wrap justify-center gap-4 py-4">
-                                        {socialSpaceships.map((ship, i) => (
-                                            <a
-                                                key={i}
-                                                href={ship.link}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex flex-col items-center group"
-                                            >
-                                                <span className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] group-hover:scale-110 transition-transform">
-                                                    {ship.logo}
-                                                </span>
-                                            </a>
-                                        ))}
-                                    </div>
-                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Right - Content */}
+                    <div className="flex flex-col gap-6 lg:min-h-[500px]">
+                        {/* Bio */}
+                        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] font-display">
+                            <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] font-display">{'>>'}
+                            </span> About_Me
+                        </h2>
+                        <AnimatePresence mode="wait">
+                            {isDeveloperMode ? (
+                                <motion.div
+                                    key="dev-bio"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="text-[var(--text)] leading-relaxed space-y-4"
+                                >
+                                    <p className="text-base lg:text-lg">
+                                        I&apos;m a student of Information Technologies and Sciences at Ca&apos;Foscari University in Venice.
+                                        I enjoy experimenting with web and mobile apps, building small projects, and learning by doing.
+                                    </p>
+                                    <p className="text-base lg:text-lg">
+                                        Beyond tech, I have a passion for photography, cinema, music and calisthenics.
+                                    </p>
+                                </motion.div>
                             ) : (
-                                renderContent()
+                                <motion.div
+                                    key="human-bio"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="text-[var(--text)] leading-relaxed"
+                                >
+                                    <p className="text-base lg:text-lg mb-6">
+                                        <span className="font-bold text-xl" style={{ color: 'var(--accent)' }}>{'>> '}</span>
+                                        When I&apos;m not coding, I&apos;m capturing moments through my lens, discovering new music,
+                                        watching films, or training calisthenics. These passions fuel my creativity and keep me balanced.
+                                    </p>
+                                </motion.div>
                             )}
-                        </TerminalWindow>
-                    </motion.div>
-                </div>
+                        </AnimatePresence>
+
+                        {/* Tabs */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                            className="flex gap-0 border-b-2 flex-wrap"
+                            style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                        >
+                            {['skills', 'education', 'learning', 'human'].map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className="relative pb-3 px-4 font-mono text-sm font-semibold transition-all duration-300 capitalize"
+                                    style={{
+                                        color: activeTab === tab ? 'var(--secondary)' : 'rgba(255, 255, 255, 0.5)'
+                                    }}
+                                >
+                                    {tab}
+                                    {activeTab === tab && (
+                                        <motion.div
+                                            layoutId="activeTab"
+                                            className="absolute bottom-0 left-0 right-0 h-0.5"
+                                            style={{ background: 'var(--secondary)' }}
+                                        />
+                                    )}
+                                </button>
+                            ))}
+                        </motion.div>
+
+                        {/* Tab Content */}
+                        <AnimatePresence mode="wait">
+                            {isDeveloperMode ? (
+                                <motion.div
+                                    key={activeTab}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="flex-1"
+                                >
+                                    {renderDeveloperContent()}
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    key="human-content"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="space-y-5"
+                                >
+                                    <SpotifyWidget />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

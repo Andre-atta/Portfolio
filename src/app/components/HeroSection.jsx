@@ -1,21 +1,24 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Tile from "@/app/components/ui/Tile";
 import RoundedFull from "@/app/components/button/RoundedFull";
 import RoundedEmpty from "@/app/components/button/RoundedEmpty";
 
 const HeroSection = () => {
+    const prefersReducedMotion = useReducedMotion();
+    const tilesToRender = useMemo(() => (prefersReducedMotion ? 200 : 400), [prefersReducedMotion]);
+
     return (
         <section className="relative w-full min-h-screen overflow-hidden flex justify-center items-center pt-24 sm:pt-32 lg:pt-36">
             <div
                 className="absolute inset-0 w-full h-full grid"
                 style={{ gridTemplateColumns: "repeat(auto-fit, minmax(70px, 1fr))" }}
             >
-                {Array.from({ length: 380 }, (_, i) => (
+                {Array.from({ length: tilesToRender }, (_, i) => (
                     <Tile key={i} />
                 ))}
             </div>
@@ -82,8 +85,8 @@ const HeroSection = () => {
                                 className="rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]
                            w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] lg:w-[420px] lg:h-[420px]
                            relative shadow-2xl"
-                                animate={{ y: [0, -20, 0] }}
-                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                                animate={prefersReducedMotion ? undefined : { y: [0, -20, 0] }}
+                                transition={prefersReducedMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
                             >
                                 <Image
                                     src="/images/hero-image.svg"
@@ -92,6 +95,7 @@ const HeroSection = () => {
                                     height={340}
                                     priority
                                     fetchPriority="high"
+                                    loading="eager"
                                     className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 drop-shadow-xl"
                                 />
                             </motion.div>
