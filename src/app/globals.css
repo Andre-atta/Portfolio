@@ -92,3 +92,17 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(34, 211, 238, 0.6);
 }
+
+/* Nasconde la scrollbar mantenendo la funzionalità di scroll */
+@layer utilities {
+    /* Nasconde la scrollbar per Chrome, Safari e Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Nasconde la scrollbar per IE, Edge e Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+}

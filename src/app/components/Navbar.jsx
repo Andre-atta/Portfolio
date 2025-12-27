@@ -4,6 +4,7 @@ import NavLink from "./NavLink";
 import React, { useState } from 'react';
 import MenuOverlay from "./MenuOverlay";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import AnimatedLogo from "@/app/components/ui/AnimatedLogo";
 
 const navLinks = [
     {
@@ -26,11 +27,7 @@ const Navbar = () => {
     return (
         <nav className="fixed mx-auto top-0 left-0 right-0 z-20 bg-[var(--background)]">
             <div className="flex border-b-2 border-[var(--primary)] flex-wrap items-center justify-between mx-auto lg:px-8 lg:py-4 px-4 py-2">
-                <Link
-                    href={"/"}
-                    className="text-4xl md:text-6xl font-semibold bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent"
-                > Andre-atta
-                </Link>
+                    <AnimatedLogo/>
                 <div className="mobile-menu block md:hidden">
                     {!navbarOpen ? (
                         <button

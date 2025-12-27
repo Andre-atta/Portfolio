@@ -16,6 +16,20 @@ module.exports = {
         secondary: "var(--secondary)",
         text: "var(--text)",
       },
+      keyframes: {
+        cascade: {
+          '0%': { transform: 'translateY(0)', opacity: '0.4' },
+          '100%': { transform: 'translateY(120px)', opacity: '0' },
+        },
+        cascadeSlow: {
+          '0%': { transform: 'translateY(0)', opacity: '0.6' },
+          '100%': { transform: 'translateY(80px)', opacity: '0.05' },
+        },
+      },
+      animation: {
+        cascade: 'cascade 6s linear infinite',
+        'cascade-slow': 'cascadeSlow 10s linear infinite',
+      },
     },
   },
   plugins: [],

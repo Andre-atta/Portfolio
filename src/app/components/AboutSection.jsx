@@ -195,7 +195,6 @@ const AboutSection = () => {
                                     background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
                                 }}
                             >
-                            {/*    SVG VA QUI */}
                             </motion.div>
                         ) : (
                             <motion.div
@@ -264,7 +263,7 @@ const AboutSection = () => {
                             className="flex gap-0 border-b-2 flex-wrap"
                             style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}
                         >
-                            {['skills', 'education', 'learning', 'human'].map((tab) => (
+                            {['skills', 'education', 'learning'].map((tab) => ( //temporaneamente tolto human va sistemato
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
@@ -305,8 +304,9 @@ const AboutSection = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.4 }}
-                                    className="space-y-5"
+                                    className="space-y-5 grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-8 auto-rows-max"
                                 >
+                                    <LetterboxdWidget />
                                     <SpotifyWidget />
                                 </motion.div>
                             )}

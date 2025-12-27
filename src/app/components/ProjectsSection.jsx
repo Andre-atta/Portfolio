@@ -58,7 +58,7 @@ const ProjectsSection = () => {
 
     return (
         <section
-            className="w-full min-h-screen flex flex-col items-center justify-center py-12 px-4 bg-[var(--background)] space-y-8"
+            className="w-full min-h-screen flex flex-col items-center justify-center py-12 px-4 space-y-8"
             id="projects"
         >
             {/* ================= HOLOGRAPHIC PROJECT CARDS ================= */}

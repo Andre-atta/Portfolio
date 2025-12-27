@@ -1,28 +1,17 @@
 "use client";
-import React, { useMemo } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import Tile from "@/app/components/ui/Tile";
 import RoundedFull from "@/app/components/button/RoundedFull";
 import RoundedEmpty from "@/app/components/button/RoundedEmpty";
 
 const HeroSection = () => {
     const prefersReducedMotion = useReducedMotion();
-    const tilesToRender = useMemo(() => (prefersReducedMotion ? 200 : 400), [prefersReducedMotion]);
 
     return (
         <section className="relative w-full min-h-screen overflow-hidden flex justify-center items-center pt-24 sm:pt-32 lg:pt-36">
-            <div
-                className="absolute inset-0 w-full h-full grid"
-                style={{ gridTemplateColumns: "repeat(auto-fit, minmax(70px, 1fr))" }}
-            >
-                {Array.from({ length: tilesToRender }, (_, i) => (
-                    <Tile key={i} />
-                ))}
-            </div>
-
             <div className="relative z-10 w-full flex justify-center items-center pointer-events-none">
                 <div className="mx-auto px-6 sm:px-8 xl:px-12 max-w-screen-2xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-16 lg:gap-24">

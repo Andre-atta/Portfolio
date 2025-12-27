@@ -60,6 +60,37 @@ async function getCurrentlyPlaying(accessToken) {
     }
 }
 
+async function getRecentlyPlayed(accessToken) {
+    try {
+        const response = await fetch("https://api.spotify.com/v1/me/player/recently-played?limit=1", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            return null;
+        }
+
+        const data = await response.json();
+        if (!data.items || data.items.length === 0) return null;
+
+        const track = data.items[0].track;
+        return {
+            name: track.name,
+            artists: track.artists.map((artist) => artist.name),
+            album: track.album.name,
+            albumImage: track.album.images[0]?.url || null,
+            trackUrl: track.external_urls.spotify,
+            isPlaying: false,
+            progress: 0,
+            duration: track.duration_ms,
+        };
+    } catch {
+        return null;
+    }
+}
+
 async function getTopArtists(accessToken, timeRange = "medium_term", limit = 5) {
     try {
         const response = await fetch(
@@ -178,7 +209,8 @@ async function getListeningTime(accessToken, topTracksData = null) {
             return null;
         }
 
-        const totalMs = data.items.reduce((sum, track) => sum + (track.duration_ms || 0), 0) * 10;
+        // Calcola il tempo totale sommando la durata di tutti i brani
+        const totalMs = data.items.reduce((sum, track) => sum + (track.duration_ms || 0), 0);
         return totalMs;
     } catch {
         return null;
@@ -202,7 +234,11 @@ export async function GET(request) {
         const accessToken = await getAccessToken();
 
         if (onlyNowPlaying) {
-            const currentlyPlaying = await getCurrentlyPlaying(accessToken);
+            let currentlyPlaying = await getCurrentlyPlaying(accessToken);
+            // Se nulla è in riproduzione, mostra l'ultimo brano ascoltato
+            if (!currentlyPlaying) {
+                currentlyPlaying = await getRecentlyPlayed(accessToken);
+            }
             return NextResponse.json(
                 {
                     currentlyPlaying,
@@ -216,8 +252,13 @@ export async function GET(request) {
             );
         }
 
-        const [currentlyPlaying, topArtists, topTracksResponse] = await Promise.all([
-            getCurrentlyPlaying(accessToken),
+        let currentlyPlaying = await getCurrentlyPlaying(accessToken);
+        // Se nulla è in riproduzione, mostra l'ultimo brano ascoltato
+        if (!currentlyPlaying) {
+            currentlyPlaying = await getRecentlyPlayed(accessToken);
+        }
+
+        const [topArtists, topTracksResponse] = await Promise.all([
             getTopArtists(accessToken),
             fetch("https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=20", {
                 headers: { Authorization: `Bearer ${accessToken}` },
