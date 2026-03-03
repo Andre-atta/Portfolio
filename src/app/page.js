@@ -1,60 +1,48 @@
-import {SpeedInsights} from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import dynamic from "next/dynamic";
-import Navbar from "@/app/components/Navbar";
-import HeroSection from "@/app/components/HeroSection";
-import Footer from "@/app/components/Footer";
+import Navbar from "@/components/sections/Navbar";
+import HeroSection from "@/components/sections/HeroSection";
+import Footer from "@/components/sections/Footer";
 
-const TileBackground = dynamic(() => import("@/app/components/ui/TileBackground"), { ssr: false });
+const TileBackground = dynamic(() => import("@/components/ui/TileBackground"), { ssr: false });
 
-const AboutSection = dynamic(() => import("@/app/components/AboutSection"), {
-    loading: () => (
-        <section className="py-24 flex justify-center">
-            <div className="animate-pulse w-11/12 max-w-6xl h-64 rounded-xl bg-white/5" />
-        </section>
-    ),
+const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), {
+    loading: () => <div className="min-h-screen" />,
     ssr: false,
 });
-const ProjectsSection = dynamic(() => import("@/app/components/ProjectsSection"), {
-    loading: () => (
-        <section className="py-24 flex justify-center">
-            <div className="animate-pulse w-11/12 max-w-6xl h-72 rounded-xl bg-white/5" />
-        </section>
-    ),
+const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSection"), {
+    loading: () => <div className="min-h-screen" />,
 });
-const EmailSection = dynamic(() => import("@/app/components/EmailSection"), {
-    loading: () => (
-        <section className="py-24 flex justify-center">
-            <div className="animate-pulse w-11/12 max-w-3xl h-60 rounded-xl bg-white/5" />
-        </section>
-    ),
+const EmailSection = dynamic(() => import("@/components/sections/EmailSection"), {
+    loading: () => <div className="min-h-screen" />,
 });
 
 export default function Home() {
     return (
-        <main className="md:snap-y md:snap-mandatory md:h-screen md:overflow-y-scroll bg-[var(--background)] no-scrollbar">
-            <SpeedInsights/>
-            <Navbar/>
+        <main className="md:snap-y md:snap-mandatory md:h-screen md:overflow-y-scroll bg-[var(--background)] no-scrollbar overflow-x-hidden">
+            <SpeedInsights />
+            <Navbar />
             <TileBackground />
-            <section className="snap-start relative z-10 w-full min-h-full overflow-hidden flex justify-center items-center">
-                <div className="w-full h-full flex justify-center items-center">
-                    <HeroSection/>
-                </div>
+
+            <section className="md:snap-start relative z-10 w-full min-h-screen flex justify-center items-center">
+                <HeroSection />
             </section>
-            <section className="snap-start relative z-10">
+
+            <section className="md:snap-start relative z-10 min-h-screen">
                 <AboutSection />
             </section>
-            <section className="snap-start relative z-10 min-h-[80vh] md:h-screen flex items-center pt-16 md:pt-24 sm:pt-32 lg:pt-36 pb-16 md:pb-0">
-                <div className="container mx-auto px-4 md:px-12 py-4">
-                    <ProjectsSection/>
+
+            <section className="md:snap-start relative z-10 min-h-screen flex items-center py-16 md:py-24">
+                <div className="container mx-auto px-4 md:px-12">
+                    <ProjectsSection />
                 </div>
             </section>
-            <section className="snap-start relative z-10 min-h-[80vh] md:h-screen flex items-center pt-16 md:pt-24 sm:pt-32 lg:pt-36 pb-16 md:pb-0">
-                <div className="container mx-auto px-4 md:px-12 py-4">
-                    <EmailSection/>
-                    <div className="mt-10">
-                        <Footer/>
-                    </div>
+
+            <section className="md:snap-start relative z-10 min-h-screen flex flex-col">
+                <div className="container mx-auto px-4 md:px-12 flex-1 flex flex-col justify-center">
+                    <EmailSection />
                 </div>
+                <Footer />
             </section>
         </main>
     );

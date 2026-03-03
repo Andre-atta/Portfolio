@@ -4,22 +4,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import RoundedFull from "@/app/components/button/RoundedFull";
-import RoundedEmpty from "@/app/components/button/RoundedEmpty";
+import RoundedFull from "@/components/button/RoundedFull";
+import RoundedEmpty from "@/components/button/RoundedEmpty";
 
 const HeroSection = () => {
     const prefersReducedMotion = useReducedMotion();
 
     return (
-        <section className="relative w-full min-h-screen overflow-hidden flex justify-center items-center pt-24 sm:pt-32 lg:pt-36">
-            <div className="relative z-10 w-full flex justify-center items-center pointer-events-none">
+        <section className="relative w-full min-h-screen overflow-hidden flex justify-center items-center pt-20 sm:pt-24 lg:pt-28">
+            <div className="relative w-full flex justify-center items-center">
                 <div className="mx-auto px-6 sm:px-8 xl:px-12 max-w-screen-2xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-16 lg:gap-24">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7 }}
-                            className="text-center md:text-left px-4 sm:px-8 md:px-0"
+                            transition={{ duration: 0.6 }}
+                            className="text-center md:text-left"
                         >
                             <h1 className="mb-8 text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-[var(--text)]">
                                 <span className="block whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-display">
@@ -52,18 +52,17 @@ const HeroSection = () => {
                                 <span className="italic">calisthenics</span>.
                             </p>
 
-                            {/* Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-5 pointer-events-auto justify-center md:justify-start">
+                            <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
                                 <Link href="/cv.pdf">
                                     <RoundedFull text="Download CV" />
                                 </Link>
-                                <Link href="/#contact">
+                                <Link href="#contact">
                                     <RoundedEmpty text="Hire Me" />
                                 </Link>
                             </div>
                         </motion.div>
 
-                        {/* Image Section */}
+                        {/* Image Section — responsive sizing */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -89,7 +88,6 @@ const HeroSection = () => {
                                 />
                             </motion.div>
                         </motion.div>
-
                     </div>
                 </div>
             </div>

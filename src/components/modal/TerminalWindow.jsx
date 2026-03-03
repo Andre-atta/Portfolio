@@ -20,25 +20,23 @@ const TerminalWindow = ({ title, children, delay = 0, className = "" }) => {
         >
             <div
                 className="flex items-center justify-between px-4 py-2 border-b-2"
-                style={{ borderColor: 'var(--secondary)', background: 'rgba(75, 0, 130, 0.3)' }}
+                style={{ borderColor: 'var(--secondary)', background: 'var(--primary-lightest)' }}
             >
                 <div className="w-16" />
                 <span className="text-sm font-mono font-bold flex-1 text-center" style={{ color: 'var(--accent)', textShadow: '0 0 8px var(--accent)' }}>
         {title}
     </span>
                 <div className="flex gap-2 justify-end w-16">
-                    <div className="flex gap-2 justify-end w-16">
-                        <svg width="16" height="16" viewBox="0 0 16 16" className="align-middle">
-                            <rect x="4" y="12" width="8" height="2" fill="var(--accent)"/>
-                        </svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16">
-                            <rect x="4" y="4" width="8" height="8" fill="none" stroke="var(--accent)" strokeWidth="2"/>
-                        </svg>
-                        <svg width="16" height="16" viewBox="0 0 16 16">
-                            <line x1="4" y1="4" x2="12" y2="12" stroke="var(--accent)" strokeWidth="2"/>
-                            <line x1="12" y1="4" x2="4" y2="12" stroke="var(--accent)" strokeWidth="2"/>
-                        </svg>
-                    </div>
+                    <svg width="16" height="16" viewBox="0 0 16 16" className="align-middle">
+                        <rect x="4" y="12" width="8" height="2" fill="var(--accent)"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <rect x="4" y="4" width="8" height="8" fill="none" stroke="var(--accent)" strokeWidth="2"/>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <line x1="4" y1="4" x2="12" y2="12" stroke="var(--accent)" strokeWidth="2"/>
+                        <line x1="12" y1="4" x2="4" y2="12" stroke="var(--accent)" strokeWidth="2"/>
+                    </svg>
                 </div>
             </div>
             <div className="p-4 font-mono">
@@ -49,4 +47,3 @@ const TerminalWindow = ({ title, children, delay = 0, className = "" }) => {
 };
 
 export default TerminalWindow;
-
