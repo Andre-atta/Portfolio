@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const TerminalWindow = ({ title, children, delay = 0, className = "" }) => {
+const TerminalWindow = ({ title, children, delay = 0, className = "", onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const TerminalWindow = ({ title, children, delay = 0, className = "" }) => {
                     <svg width="16" height="16" viewBox="0 0 16 16">
                         <rect x="4" y="4" width="8" height="8" fill="none" stroke="var(--accent)" strokeWidth="2"/>
                     </svg>
-                    <svg width="16" height="16" viewBox="0 0 16 16">
+                    <svg width="16" height="16" viewBox="0 0 16 16" onClick={onClose} className="cursor-pointer">
                         <line x1="4" y1="4" x2="12" y2="12" stroke="var(--accent)" strokeWidth="2"/>
                         <line x1="12" y1="4" x2="4" y2="12" stroke="var(--accent)" strokeWidth="2"/>
                     </svg>

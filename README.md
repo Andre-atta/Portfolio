@@ -34,18 +34,3 @@ You can explore the live version here 👉 [Website](https://www.andre-atta.dev/
 The code may not be perfect, but it's a starting point. It will grow and improve as I do._
 
 ---
-
-## 🚀 How to Run Locally
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/your-repo.git
-
-# Navigate to the project directory
-cd your-repo
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev

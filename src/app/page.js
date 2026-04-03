@@ -32,10 +32,8 @@ export default function Home() {
                 <AboutSection />
             </section>
 
-            <section className="md:snap-start relative z-10 min-h-screen flex items-center py-16 md:py-24">
-                <div className="container mx-auto px-4 md:px-12">
-                    <ProjectsSection />
-                </div>
+            <section className="md:snap-start relative z-10 w-full min-h-screen flex items-start md:items-center">
+                <ProjectsSection />
             </section>
 
             <section className="md:snap-start relative z-10 min-h-screen flex flex-col">

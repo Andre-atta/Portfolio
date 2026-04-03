@@ -1,93 +1,86 @@
 "use client";
-import React from "react";
-import { useMemo, useState, useEffect, useRef } from "react";
+import React, { useMemo, useEffect, useRef, useState } from "react";
 
-const TILE_COUNT_DESKTOP = 400;
-const TILE_COUNT_MOBILE = 100;
-const MOBILE_BREAKPOINT = 768;
+const TILE_SIZE = 70;
 
 const Tile = React.memo(({ id }) => (
-    <div
-        id={`tile-${id}`}
-        className="tile aspect-square border border-neutral-900"
-    />
+    <div id={`tile-${id}`} className="tile border border-neutral-950" />
 ));
-
 Tile.displayName = "Tile";
 
-const TileBackground = ({ className }) => {
+const TileBackground = () => {
     const [isMobile, setIsMobile] = useState(false);
-    const containerRef = useRef(null);
+    const [tileCount, setTileCount] = useState(0);
+    const gridColsRef = useRef(0);
 
     useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-        check();
-        window.addEventListener("resize", check);
-        return () => window.removeEventListener("resize", check);
+        const calcTiles = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            if (!mobile) {
+                const cols = Math.ceil(window.innerWidth / TILE_SIZE);
+                const rows = Math.ceil(window.innerHeight / TILE_SIZE);
+                gridColsRef.current = cols;
+                setTileCount(cols * rows);
+            }
+        };
+        calcTiles();
+        window.addEventListener("resize", calcTiles);
+        return () => window.removeEventListener("resize", calcTiles);
     }, []);
 
     useEffect(() => {
+        if (isMobile) return;
+
         const handleMouseMove = (e) => {
-            if(!containerRef.current) return;
+            const col   = Math.floor(e.clientX / TILE_SIZE);
+            const row   = Math.floor(e.clientY / TILE_SIZE);
+            const index = row * gridColsRef.current + col;
 
-            const firstTile = containerRef.current.firstElementChild;
-            if(!firstTile) return;
+            const tile = document.getElementById(`tile-${index}`);
+            if (!tile) return;
 
-            // 1. calcola dimensioni tile -> ma di base noi la dimensione la abbiamo varia solo in base allo schermo
-            const tileRect = firstTile.getBoundingClientRect();
-            const tileWidth = tileRect.width;
-            const tileHeight = tileRect.height;
-
-            if (tileWidth === 0 || tileHeight === 0) return;
-
-            // 2. calcola colonna e riga basandosi sulla pos mouse
-            const col = Math.floor(e.clientX / tileWidth);
-            const row = Math.floor(e.clientY / tileHeight);
-
-            // 3. Calcola il numero di colonne attuali
-            const gridStyle = window.getComputedStyle(containerRef.current);
-            const gridCols = gridStyle.gridTemplateColumns.split(" ").length;
-
-            // 4. trova l'indice
-            const index = row * gridCols + col;
-
-            // 5. trova elemento a cui applicare l'effetto
-            const targetTile = document.getElementById(`tile-${index}`);
-
-            if(targetTile) {
-                // tile acceso
-                targetTile.style.backgroundColor = "var(--primary)";
-                targetTile.style.opacity = "0.2";
-                targetTile.style.transition = "none";
-
-                // tile spento
-                setTimeout (() => {
-                    targetTile.style.backgroundColor = "transparent";
-                    targetTile.style.opacity = "1";
-                    targetTile.style.transition = "background-color 1000ms ease-out";
-                }, 10);
-            }
+            tile.style.backgroundColor = "var(--primary)";
+            tile.style.transition = "none";
+            setTimeout(() => {
+                tile.style.backgroundColor = "transparent";
+                tile.style.transition = "background-color 1000ms ease-out";
+            }, 10);
         };
 
-        // usa passive epr performance dello scroll
         window.addEventListener("mousemove", handleMouseMove, { passive: true });
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [isMobile]);
 
-    const count = isMobile ? TILE_COUNT_MOBILE : TILE_COUNT_DESKTOP;
     const tiles = useMemo(
-        () => Array.from({ length: count }, (_, i) => <Tile key={i} id={i} />),
-        [count]
+        () => Array.from({ length: tileCount }, (_, i) => <Tile key={i} id={i} />),
+        [tileCount]
     );
 
-    return (
-        <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
+    // MOBILE: griglia CSS pura, zero tile nel DOM, zero JS overhead
+    if (isMobile) {
+        return (
             <div
-                ref={containerRef}
-                className="w-full h-full grid overflow-hidden opacity-30"
+                className="fixed inset-0 w-screen h-screen z-0 pointer-events-none"
+                aria-hidden="true"
                 style={{
-                    // Usa auto-fill con dimensione fissa per calcoli matematici precisi
-                    gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? "60px" : "70px"}, 1fr))`,
+                    backgroundImage:
+                        "linear-gradient(var(--border, #111) 1px, transparent 1px), linear-gradient(90deg, var(--border, #111) 1px, transparent 1px)",
+                    backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
+                }}
+            />
+        );
+    }
+
+    // DESKTOP: tile interattivi, numero esatto calcolato sulla viewport
+    return (
+        <div className="fixed inset-0 w-screen h-screen z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+            <div
+                className="w-full h-full"
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: `repeat(${gridColsRef.current}, ${TILE_SIZE}px)`,
+                    gridAutoRows: `${TILE_SIZE}px`,
                 }}
             >
                 {tiles}

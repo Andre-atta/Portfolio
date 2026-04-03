@@ -12,9 +12,7 @@ const SOCIAL_LINKS = [
     { href: "https://github.com/Andre-atta", src: "/github-icon.svg", alt: "Github" },
 ];
 
-// Input style condiviso — usa variabili CSS, niente hardcoded
-const inputClass =
-    "border rounded block w-full p-2.5 text-sm transition-colors duration-200 focus:outline-none focus:ring-1 font-mono";
+const inputClass =     "border rounded block w-full p-2.5 text-sm transition-colors duration-200 focus:outline-none focus:ring-1 font-mono";
 const inputStyle = {
     background: "rgba(var(--primary-rgb), 0.06)",
     borderColor: "var(--primary-lighter)",
@@ -63,7 +61,7 @@ const EmailSection = () => {
     return (
         <section
             id="contact"
-            className="grid md:grid-cols-2 gap-8 py-16 md:py-24 relative"
+            className="grid md:grid-cols-2 gap-8 py-16 md:py-24 items-center mt-16  justify-center relative"
         >
             {/* Left — intro */}
             <div>
@@ -84,7 +82,9 @@ const EmailSection = () => {
             </div>
 
             {/* Right — form */}
-            <div>
+            <div className="relative">
+                <GlowBlob className="pointer-events-none absolute left-1/2 -bottom-1/3  -z-10" />
+                
                 <TerminalWindow title="contact.sh">
                     {emailSubmitted ? (
                         <p className="text-sm mt-2" style={{ color: "var(--success)" }}>
@@ -92,7 +92,6 @@ const EmailSection = () => {
                         </p>
                     ) : (
                         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-                            {/* Bot honeypot */}
                             <input type="text" name="bot-field" className="hidden" tabIndex="-1" autoComplete="off" />
 
                             {[
@@ -140,7 +139,9 @@ const EmailSection = () => {
                     )}
                 </TerminalWindow>
             </div>
-            <GlowBlob/>
+
+            {/* GlowBlob nel mezzo della pagina */}
+            <GlowBlob className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/3 -translate-y-1/2 -z-10" />
         </section>
     );
 };

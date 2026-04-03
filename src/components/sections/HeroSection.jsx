@@ -1,19 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import RoundedFull from "@/components/button/RoundedFull";
 import RoundedEmpty from "@/components/button/RoundedEmpty";
+import TerminalWindow from "@/components/modal/TerminalWindow";
 
 const HeroSection = () => {
     const prefersReducedMotion = useReducedMotion();
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     return (
         <section className="relative w-full min-h-screen overflow-hidden flex justify-center items-center pt-20 sm:pt-24 lg:pt-28">
             <div className="relative w-full flex justify-center items-center">
-                <div className="mx-auto px-6 sm:px-8 xl:px-12 max-w-screen-2xl">
+                <div className="mx-auto w-full  px-6 sm:px-8 xl:px-12 max-w-screen-2xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-16 lg:gap-24">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -40,16 +42,37 @@ const HeroSection = () => {
                                     wrapper="span"
                                     speed={50}
                                     repeat={Infinity}
-                                    className="text-white"
+                                    className="text-[var(--text)]"
                                 />
                             </h1>
 
-                            <p className="text-[var(--text)] text-lg sm:text-xl lg:text-2xl leading-relaxed mb-10 max-w-prose md:max-w-xl lg:max-w-2xl">
-                                Student in <span className="font-bold text-[var(--primary)]">Information Technology</span> at Ca&apos;Foscari,
-                                passionate about learning and building. I love exploring ideas
-                                hands-on, from coding to design. Outside of tech, I&apos;m into{" "}
-                                <span className="italic">photography, music, movies</span> and{" "}
-                                <span className="italic">calisthenics</span>.
+                            <p className="text-[var(--text)] text-lg sm:text-xl lg:text-2xl leading-relaxed mb-6 max-w-prose md:max-w-xl lg:max-w-2xl">
+                                Building things for the web. <br/>
+                                Building things for me. <br/>
+                                <span
+                                    onClick={() => setIsVideoOpen(true)}
+                                    className="inline-flex cursor-default"
+                                >
+                                    {"Bob the builder".split("").map((char, index) => (
+                                        <motion.span
+                                            key={index}
+                                            className="inline-block"
+                                            animate={prefersReducedMotion ? undefined : {
+                                                scale: [1, 1, 1.25, 1, 1],
+                                                y: [0, 0, -2, 0, 0]
+                                            }}
+                                            transition={prefersReducedMotion ? undefined : {
+                                                duration: 12,
+                                                repeat: Infinity,
+                                                delay: index * 0.05,
+                                                times: [0, 0.85, 0.88, 0.91, 1],
+                                                ease: "easeInOut"
+                                            }}
+                                        >
+                                            {char === " " ? "\u00A0" : char}
+                                        </motion.span>
+                                    ))}
+                                </span> is my mentor._.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
@@ -91,6 +114,29 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Video Modal Overlay */}
+            {isVideoOpen && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                    onClick={() => setIsVideoOpen(false)}
+                >
+                    <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+                        <TerminalWindow title="bob.mp4" onClose={() => setIsVideoOpen(false)}>
+                            <div className="relative w-full aspect-video">
+                                <iframe
+                                    className="absolute top-0 left-0 w-full h-full rounded-md"
+                                    src="https://www.youtube.com/embed/daVKiNdfCu4?autoplay=1"
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                        </TerminalWindow>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

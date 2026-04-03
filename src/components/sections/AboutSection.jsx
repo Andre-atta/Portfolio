@@ -184,19 +184,16 @@ const AboutSection = () => {
 
                     {/* Right - Content */}
                     <div className="flex flex-col gap-6 lg:min-h-[420px]">
-                        {/* Title */}
-                        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]">
-                            <span style={{ color: "var(--accent)" }}>{">>"}</span> About_Me
+                        <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)]  via-[var(--secondary)]">
+                            ABOUT ME
                         </h2>
 
-                        {/* Bio */}
                         <p className="text-[var(--text)] leading-relaxed text-base lg:text-lg opacity-90">
-                            I&apos;m a student of Information Technologies and Sciences at Ca&apos;Foscari University in Venice.
-                            I enjoy experimenting with web and mobile apps, building small projects, and learning by doing.
+                            I&apos;m a student of Information Technologies and Sciences at Ca&apos;Foscari University in Venice,
+                            currently exploring and experimenting with web and mobile development.<br/>
                             Beyond tech, I have a passion for photography, cinema, music and calisthenics.
                         </p>
 
-                        {/* Tabs */}
                         <div
                             className="flex gap-0 border-b-2 flex-wrap"
                             style={{ borderColor: "rgba(255, 255, 255, 0.1)" }}

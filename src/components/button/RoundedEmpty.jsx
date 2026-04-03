@@ -12,9 +12,12 @@ const RoundedEmpty = ({ text, onClick, children }) => {
                  transition-all duration-300"
             onClick={onClick}
         >
-      <span className="bg-[var(--background)] rounded-xl text-sm px-6 py-2 flex items-center justify-center w-full
-                       text-[var(--text)] font-semibold">
-        {children && <span className="mr-3">{children}</span>}
+      <span className="bg-[var(--background)] rounded-xl text-sm px-6 py-2 flex items-center justify-center w-full text-[var(--text)] font-semibold">
+        {children &&
+            <span className="mr-3">
+                {children}
+            </span>
+        }
           {text}
       </span>
         </motion.button>
