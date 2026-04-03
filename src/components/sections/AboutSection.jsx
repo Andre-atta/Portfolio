@@ -4,6 +4,7 @@ import { TbBrandNextjs } from "react-icons/tb";
 import React, { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { FaFigma, FaPython, FaReact } from "react-icons/fa";
+import Image from "next/image";
 
 
 const skills = [
@@ -180,6 +181,9 @@ const AboutSection = () => {
                             background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
                         }}
                     >
+                        {/*<Image*/}
+                        {/*    /!* Prima o poi capisco cosa metterci *!/*/}
+                        {/*/>*/}
                     </motion.div>
 
                     {/* Right - Content */}

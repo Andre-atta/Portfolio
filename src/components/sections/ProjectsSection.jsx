@@ -32,11 +32,11 @@ const ProjectsSection = () => {
 
     return (
         <section
-            className="relative w-full min-h-screen md:h-screen flex flex-col justify-start md:justify-between items-center gap-10 md:gap-16 px-4 sm:px-6 xl:px-8 pt-24 md:pt-40 pb-10 md:pb-12"
+            className="relative w-full min-h-screen lg:h-screen flex flex-col justify-start lg:justify-between items-center gap-10 lg:gap-16 px-4 sm:px-6 xl:px-8 pt-24 lg:pt-40 pb-10 lg:pb-12 lg:overflow-hidden"
             id="projects"
         >
             {/* GRIGLIA CARD */}
-            <div className="flex flex-wrap justify-center gap-10 md:gap-24 w-full">
+            <div className="flex flex-wrap justify-center gap-8 sm:gap-10 lg:gap-24 w-full">
                 <AnimatePresence mode="popLayout">
                     {filteredProjects.length > 0 ? (
                         filteredProjects.map((project) => (

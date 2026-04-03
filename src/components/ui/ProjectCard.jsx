@@ -13,11 +13,11 @@ const ProjectCard = ({project, onClick}) => {
             whileHover={{y: -6}}
             transition={{duration: 0.3}}
             onClick={onClick}
-            className="flex flex-col w-96 rounded-2xl overflow-hidden border-2 border-[var(--primary)] bg-black/40 backdrop-blur-sm cursor-pointer shrink-0"
+            className="flex flex-col w-[90vw] max-w-[340px] sm:max-w-none sm:w-96 rounded-2xl overflow-hidden border-2 border-[var(--primary)] bg-black/40 backdrop-blur-sm cursor-pointer shrink-0"
             style={{boxShadow: "0 0 20px rgba(75, 0, 130, 0.15)"}}
         >
             <div
-                className="relative w-full h-64 flex items-center justify-center overflow-hidden rounded-t-2xl"
+                className="relative w-full h-56 sm:h-64 flex items-center justify-center overflow-hidden rounded-t-2xl"
                 style={{
                     background: "radial-gradient(ellipse at center, rgba(var(--primary-rgb),0.12) 0%, #0a0a0a 70%)",
                 }}

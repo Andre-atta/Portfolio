@@ -69,7 +69,7 @@ const ProjectModal = ({ project, onClose }) => {
     return (
         <AnimatePresence>
             <motion.div
-                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 pt-20 sm:pt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -78,7 +78,7 @@ const ProjectModal = ({ project, onClose }) => {
                 <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
 
                 <motion.div
-                    className="relative z-10 w-full max-w-3xl flex flex-col rounded-lg overflow-hidden"
+                    className="relative z-10 w-full max-w-3xl flex flex-col rounded-lg overflow-hidden max-h-[85vh] mt-4 sm:mt-0"
                     style={{
                         background: "rgba(0,0,0,0.92)",
                         border: "2px solid var(--primary)",
@@ -91,7 +91,7 @@ const ProjectModal = ({ project, onClose }) => {
                 >
                     <ModalHeader title="modal.sh" onClose={onClose} />
 
-                    <div className="flex flex-col md:flex-row gap-0 p-6 font-mono">
+                    <div className="flex flex-col md:flex-row gap-0 p-4 sm:p-6 font-mono overflow-y-auto no-scrollbar">
 
                         {/* COLONNA SX */}
                         <div
@@ -100,7 +100,7 @@ const ProjectModal = ({ project, onClose }) => {
                         >
                             {/* Immagine — bordo netto, niente glow */}
                             <div
-                                className="relative w-32 h-32 rounded-xl overflow-hidden shrink-0"
+                                className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-xl overflow-hidden shrink-0"
                                 style={{
                                     border: "2px solid var(--primary)",
                                 }}
@@ -116,7 +116,7 @@ const ProjectModal = ({ project, onClose }) => {
 
                             <StatusBadge status={project.status} />
 
-                            <div className="flex flex-col gap-2 w-full mt-auto pt-4">
+                            <div className="flex flex-col gap-2 w-full mt-auto pt-2 sm:pt-4">
                                 {project.gitUrl && project.gitUrl !== "/" && (
                                     <RoundedEmpty
                                         text="View Code"
@@ -138,13 +138,13 @@ const ProjectModal = ({ project, onClose }) => {
                         <div className="flex flex-col gap-4 flex-1 md:pl-6 mt-6 md:mt-0">
                             <div className="flex items-baseline gap-2">
                                 <span style={{ color: "var(--secondary)" }} className="text-sm select-none">❯</span>
-                                <h2 className="text-xl font-bold text-[var(--text)]">
+                                <h2 className="text-lg sm:text-xl font-bold text-[var(--text)]">
                                     {project.title}
                                 </h2>
                             </div>
 
                             <div
-                                className="text-sm leading-relaxed max-h-64 overflow-y-auto custom-scrollbar text-neutral-300"
+                                className="text-sm leading-relaxed max-h-none md:max-h-64 text-neutral-300"
                                 style={{
                                     textAlign: "justify"
                                 }}
@@ -152,7 +152,7 @@ const ProjectModal = ({ project, onClose }) => {
                                 {project.description}
                             </div>
 
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-2 mt-auto">
                                 {project.technologies?.map((tech, i) => (
                                     <TechnologyTag key={i} name={tech.name} icon={tech.icon} />
                                 ))}

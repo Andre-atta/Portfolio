@@ -19,24 +19,24 @@ const EmailSection = dynamic(() => import("@/components/sections/EmailSection"),
 
 export default function Home() {
     return (
-        <main className="md:snap-y md:snap-mandatory md:h-screen md:overflow-y-scroll bg-[var(--background)] no-scrollbar overflow-x-hidden">
+        <main className="lg:snap-y lg:snap-mandatory lg:h-screen lg:overflow-y-scroll bg-[var(--background)] no-scrollbar overflow-x-clip touch-pan-y touch-manipulation">
             <SpeedInsights />
             <Navbar />
             <TileBackground />
 
-            <section className="md:snap-start relative z-10 w-full min-h-screen flex justify-center items-center">
+            <section className="lg:snap-start relative z-10 w-full min-h-screen flex justify-center items-center">
                 <HeroSection />
             </section>
 
-            <section className="md:snap-start relative z-10 min-h-screen">
+            <section className="lg:snap-start relative z-10 min-h-screen">
                 <AboutSection />
             </section>
 
-            <section className="md:snap-start relative z-10 w-full min-h-screen flex items-start md:items-center">
+            <section className="lg:snap-start relative z-10 w-full min-h-screen flex items-start lg:items-center">
                 <ProjectsSection />
             </section>
 
-            <section className="md:snap-start relative z-10 min-h-screen flex flex-col">
+            <section className="lg:snap-start relative z-10 min-h-screen flex flex-col">
                 <div className="container mx-auto px-4 md:px-12 flex-1 flex flex-col justify-center">
                     <EmailSection />
                 </div>
