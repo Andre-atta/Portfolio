@@ -76,7 +76,7 @@ const HeroSection = () => {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
-                                <Link href="/cv.pdf">
+                                <Link href="/CV_Andrea_Andreatta.pdf">
                                     <RoundedFull text="Download CV" />
                                 </Link>
                                 <Link href="#contact">
