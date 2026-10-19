@@ -1,5 +1,5 @@
 import React from "react";
-import GlowBlob from "@/components/ui/GlowBlob";
+import GlowBlob from "@/app/components/ui/GlowBlob";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();

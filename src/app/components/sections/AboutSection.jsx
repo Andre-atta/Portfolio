@@ -2,7 +2,7 @@
 import { SiCplusplus } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 import React, { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FaFigma, FaPython, FaReact } from "react-icons/fa";
 import Image from "next/image";
 
@@ -21,6 +21,7 @@ const AboutSection = () => {
     const [activeTab, setActiveTab] = useState("skills");
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
+    const shouldReduceMotion = useReducedMotion();
 
     const renderTabContent = () => {
         switch (activeTab) {
@@ -34,42 +35,64 @@ const AboutSection = () => {
                         transition={{ duration: 0.35 }}
                         className="space-y-5"
                     >
-                        {skills.map((skill, index) => (
-                            <motion.div
-                                key={skill.name}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.08 }}
-                            >
-                                <div className="flex items-center justify-between mb-2">
-                                    <div className="flex items-center gap-3 text-white">
-                                        <span style={{ color: "var(--accent)" }}>{skill.icon}</span>
-                                        <span className="font-semibold text-base">{skill.name}</span>
-                                    </div>
-                                    <span className="text-sm font-bold font-mono" style={{ color: "var(--secondary)" }}>
-                                        [{skill.level}%]
-                                    </span>
-                                </div>
-                                <div
-                                    className="h-2.5 relative overflow-hidden rounded-full"
-                                    style={{
-                                        background: "var(--primary-lightest)",
-                                        border: "1px solid var(--secondary-lightest)",
-                                    }}
+                        {skills.map((skill, index) => {
+                            const filled = Math.round((skill.level / 100) * 20);
+                            const baseDelay = 0.1 + index * 0.06;
+
+                            return (
+                                <motion.div
+                                    key={skill.name}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.08 }}
                                 >
-                                    <motion.div
-                                        className="h-full rounded-full"
+                                    <div className="flex items-center justify-between mb-2">
+                                        <div className="flex items-center gap-3 text-white">
+                                            <span style={{ color: "var(--accent)" }}>{skill.icon}</span>
+                                            <span className="font-semibold text-base">{skill.name}</span>
+                                        </div>
+                                        <span className="text-sm font-bold font-mono" style={{ color: "var(--secondary)" }}>
+                                            [{skill.level}%]
+                                        </span>
+                                    </div>
+
+                                    <div
+                                        role="progressbar"
+                                        aria-valuenow={skill.level}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                        aria-label={`${skill.name} proficiency`}
+                                        className="grid grid-cols-[repeat(20,1fr)] gap-[3px] p-[3px] rounded-md border-2 shadow-[4px_4px_0_rgba(0,0,0,0.6)]"
                                         style={{
-                                            background: "linear-gradient(90deg, var(--secondary), var(--accent))",
-                                            boxShadow: "0 0 10px var(--accent)",
+                                            background: "var(--primary-lightest)",
+                                            borderColor: "var(--secondary-lightest)",
                                         }}
-                                        initial={{ width: 0 }}
-                                        animate={{ width: `${skill.level}%` }}
-                                        transition={{ duration: 1, delay: 0.2 + index * 0.08, ease: "easeOut" }}
-                                    />
-                                </div>
-                            </motion.div>
-                        ))}
+                                    >
+                                        {Array.from({ length: 20 }, (_, i) =>
+                                            i < filled ? (
+                                                <motion.span
+                                                    key={i}
+                                                    className="h-3.5 rounded-sm shadow-[inset_0_3px_0_rgba(255,255,255,0.25)]"
+                                                    style={{
+                                                        background: `color-mix(in srgb, var(--accent) ${
+                                                            (i / (20 - 1)) * 100
+                                                        }%, var(--secondary))`,
+                                                    }}
+                                                    initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{
+                                                        duration: 0.1,
+                                                        delay: shouldReduceMotion ? 0 : baseDelay + i * 0.02,
+                                                    }}
+                                                />
+                                            ) : (
+                                                <span key={i} className="h-3.5 bg-black/40" />
+                                            )
+                                        )}
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </motion.div>
                 );
 

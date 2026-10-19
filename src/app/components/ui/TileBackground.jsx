@@ -4,7 +4,7 @@ import React, { useMemo, useEffect, useRef, useState } from "react";
 const TILE_SIZE = 70;
 
 const Tile = React.memo(({ id }) => (
-    <div id={`tile-${id}`} className="tile border border-neutral-950" />
+    <div id={`tile-${id}`} className="tile border-r border-b border-white/[0.02]" />
 ));
 Tile.displayName = "Tile";
 
@@ -65,7 +65,7 @@ const TileBackground = () => {
                 aria-hidden="true"
                 style={{
                     backgroundImage:
-                        "linear-gradient(var(--border, #111) 1px, transparent 1px), linear-gradient(90deg, var(--border, #111) 1px, transparent 1px)",
+                        "linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px)",
                     backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
                 }}
             />
@@ -76,7 +76,7 @@ const TileBackground = () => {
     return (
         <div className="fixed inset-0 w-screen h-screen z-0 pointer-events-none overflow-hidden" aria-hidden="true">
             <div
-                className="w-full h-full"
+                className="w-full h-full border-t border-l border-white/[0.02]"
                 style={{
                     display: "grid",
                     gridTemplateColumns: `repeat(${gridColsRef.current}, ${TILE_SIZE}px)`,

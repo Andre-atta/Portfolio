@@ -1,9 +1,9 @@
 "use client";
-import projectsData from "@/lib/projectsData";
-import ProjectCard from "@/components/ui/ProjectCard";
-import TabButton from "@/components/button/TabButton";
+import projectsData from "@/data/projectsData";
+import ProjectCard from "@/app/components/ui/ProjectCard";
+import TabButton from "@/app/components/button/TabButton";
 import { motion, AnimatePresence } from "framer-motion";
-import ProjectModal from "@/components/modal/ProjectModal";
+import ProjectModal from "@/app/components/modal/ProjectModal";
 import React, { useState, useMemo, useCallback } from "react";
 
 const TABS = ["REACT", "UNI", "ALL", "WEB", "MOBILE"];

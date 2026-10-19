@@ -1,19 +1,19 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import dynamic from "next/dynamic";
-import Navbar from "@/components/sections/Navbar";
-import HeroSection from "@/components/sections/HeroSection";
-import Footer from "@/components/sections/Footer";
+import Navbar from "@/app/components/sections/Navbar";
+import Footer from "@/app/components/sections/Footer";
+import HeroSection from "@/app/components/sections/HeroSection";
 
-const TileBackground = dynamic(() => import("@/components/ui/TileBackground"), { ssr: false });
+const TileBackground = dynamic(() => import("@/app/components/ui/TileBackground"), { ssr: false });
 
-const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), {
+const AboutSection = dynamic(() => import("@/app/components/sections/AboutSection"), {
     loading: () => <div className="min-h-screen" />,
     ssr: false,
 });
-const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSection"), {
+const ProjectsSection = dynamic(() => import("@/app/components/sections/ProjectsSection"), {
     loading: () => <div className="min-h-screen" />,
 });
-const EmailSection = dynamic(() => import("@/components/sections/EmailSection"), {
+const EmailSection = dynamic(() => import("@/app/components/sections/EmailSection"), {
     loading: () => <div className="min-h-screen" />,
 });
 

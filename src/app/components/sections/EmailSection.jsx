@@ -2,9 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
-import RoundedFull from "@/components/button/RoundedFull";
-import TerminalWindow from "@/components/modal/TerminalWindow";
-import GlowBlob from "@/components/ui/GlowBlob";
+import RoundedFull from "@/app/components/button/RoundedFull";
+import TerminalWindow from "@/app/components/modal/TerminalWindow";
+import GlowBlob from "@/app/components/ui/GlowBlob";
 
 const SOCIAL_LINKS = [
     { href: "https://www.linkedin.com/in/andrea-francesco-ivo-andreatta-310a4b32a/", src: "/linkedin-icon.svg", alt: "Linkedin" },

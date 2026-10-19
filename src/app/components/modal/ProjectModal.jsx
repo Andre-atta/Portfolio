@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { CodeBracketIcon } from "@heroicons/react/24/outline";
-import TechnologyTag from "@/components/ui/TechnologyTag";
-import RoundedFull from "@/components/button/RoundedFull";
-import RoundedEmpty from "@/components/button/RoundedEmpty";
+import TechnologyTag from "@/app/components/ui/TechnologyTag";
+import RoundedFull from "@/app/components/button/RoundedFull";
+import RoundedEmpty from "@/app/components/button/RoundedEmpty";
 
 const StatusBadge = ({ status }) => {
     const isCompleted = status === "Completed";

@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import TechnologyTag from "@/components/ui/TechnologyTag";
+import TechnologyTag from "@/app/components/ui/TechnologyTag";
 
 const ProjectCard = ({project, onClick}) => {
     return (
