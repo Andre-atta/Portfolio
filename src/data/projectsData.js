@@ -1,4 +1,4 @@
-import { SiNextdotjs, SiTailwindcss, SiReact } from "react-icons/si";
+import {SiNextdotjs, SiTailwindcss, SiReact, SiFlask, SiPython, SiPostgresql} from "react-icons/si";
 
 const projectsData = [
     {
@@ -19,6 +19,29 @@ const projectsData = [
         ],
         status: "Completed",
     },
+    {
+        id: 2,
+        title: "OverseasHub",
+        preview: "Group university project for the Database Systems course (A.Y. 2025/26). " +
+            "I took the lead on the database schema design and the implementation of security policies. " +
+            "Final grade: 29/30.",
+        description: "This project involved developing a comprehensive web platform to manage the Overseas mobility program for Ca' Foscari University students. " +
+            "Built by a highly collaborative 4-person team, we efficiently divided tasks while maintaining a cross-functional approach. " +
+            "I specifically focused on the backend architecture, handling the conceptual and logical design of the relational database, as well as implementing robust security " +
+            "measures and role-based access control. " +
+            "It was a highly rewarding experience and an excellent capstone for the course, allowing us to apply theoretical DB concepts to a complex, " +
+            "real-world administrative scenario.",
+        image: "/images/projects/2.png",
+        tag: ["All", "Uni", "Web"],
+        gitUrl: "https://github.com/Andre-atta/OverseasHub",
+        previewUrl: "",
+        technologies: [
+            { name: "Flask",        icon: SiFlask },
+            { name: "Python",       icon: SiPython },
+            { name: "PostgreSQL",   icon: SiPostgresql },
+        ],
+        status: "Completed",
+    }
 ];
 
 export default projectsData;

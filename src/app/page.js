@@ -1,4 +1,5 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next"
 import dynamic from "next/dynamic";
 import Navbar from "@/app/components/sections/Navbar";
 import Footer from "@/app/components/sections/Footer";
@@ -21,6 +22,7 @@ export default function Home() {
     return (
         <main className="lg:snap-y lg:snap-mandatory lg:h-screen lg:overflow-y-scroll bg-[var(--background)] no-scrollbar overflow-x-clip touch-pan-y touch-manipulation">
             <SpeedInsights />
+            <Analytics/>
             <Navbar />
             <TileBackground />
 
